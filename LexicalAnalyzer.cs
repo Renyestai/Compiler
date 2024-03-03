@@ -37,12 +37,12 @@ public class Token
 
 }
 
-public class Lexer
+public class LexicalAnalyzer
 {
 	private string input;
 	private int position;
 
-	public Lexer(string input)
+	public LexicalAnalyzer(string input)
 	{
 		this.input = input;
 		position = 0;

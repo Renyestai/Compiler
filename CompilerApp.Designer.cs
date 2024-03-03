@@ -87,6 +87,9 @@ namespace TFCLab1
 			this.LexerTypeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.LexemColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.LocationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.fontDialog1 = new System.Windows.Forms.FontDialog();
+			this.видToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.изменитьШрифтToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip.SuspendLayout();
 			this.toolStrip.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitRichBoxContainer)).BeginInit();
@@ -104,7 +107,8 @@ namespace TFCLab1
             this.правкаToolStripMenuItem,
             this.текстToolStripMenuItem,
             this.пускToolStripMenuItem,
-            this.справкаToolStripMenuItem});
+            this.справкаToolStripMenuItem,
+            this.видToolStripMenuItem});
 			this.menuStrip.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip.Name = "menuStrip";
 			this.menuStrip.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
@@ -617,6 +621,21 @@ namespace TFCLab1
 			this.LocationColumn.Name = "LocationColumn";
 			this.LocationColumn.ReadOnly = true;
 			// 
+			// видToolStripMenuItem
+			// 
+			this.видToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.изменитьШрифтToolStripMenuItem});
+			this.видToolStripMenuItem.Name = "видToolStripMenuItem";
+			this.видToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
+			this.видToolStripMenuItem.Text = "Вид";
+			// 
+			// изменитьШрифтToolStripMenuItem
+			// 
+			this.изменитьШрифтToolStripMenuItem.Name = "изменитьШрифтToolStripMenuItem";
+			this.изменитьШрифтToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.изменитьШрифтToolStripMenuItem.Text = "Изменить шрифт";
+			this.изменитьШрифтToolStripMenuItem.Click += new System.EventHandler(this.ИзменитьШрифтToolStripMenuItem_Click);
+			// 
 			// CompilerApp
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -707,6 +726,9 @@ namespace TFCLab1
 		private DataGridViewTextBoxColumn LexerTypeColumn;
 		private DataGridViewTextBoxColumn LexemColumn;
 		private DataGridViewTextBoxColumn LocationColumn;
+		private FontDialog fontDialog1;
+		private ToolStripMenuItem видToolStripMenuItem;
+		private ToolStripMenuItem изменитьШрифтToolStripMenuItem;
 	}
 }
 

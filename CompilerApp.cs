@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Reflection.Emit;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 
 namespace TFCLab1
@@ -198,6 +201,24 @@ namespace TFCLab1
 		{
 			AppFunctions.RunCompiler(inputRichBox, dataGridViewOutput);
 
+		}
+
+		private void ИзменитьШрифтToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			if (fontDialog1.ShowDialog() == DialogResult.OK)
+			{
+				// Получаем выбранный шрифт из диалога
+				Font selectedFont = fontDialog1.Font;
+
+				// Устанавливаем выбранный шрифт для элемента управления (например, для TextBox)
+				inputRichBox.Font = selectedFont;
+
+				// Устанавливаем выбранный шрифт для всех столбцов DataGridView
+				foreach (DataGridViewRow row in dataGridViewOutput.Rows)
+				{
+					row.DefaultCellStyle.Font = selectedFont;
+				}
+			}
 		}
 	}
 }

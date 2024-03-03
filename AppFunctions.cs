@@ -73,17 +73,17 @@ namespace TFCLab1
 
 		public static void OpenFileDialogue(RichTextBox inputBox, ref string filePath)
 		{
-			OpenFileDialog openFileDialog1 = new OpenFileDialog
+			OpenFileDialog openFileWindow = new OpenFileDialog
 			{
 				Filter = "Текстовые файлы (*.txt)|*.txt|Файлы (*.cs)|*.cs|Все файлы (*.*)|*.*",
 				Title = "Открыть",
 				DefaultExt = "txt",
 			};
 
-			if (openFileDialog1.ShowDialog() == DialogResult.OK)
+			if (openFileWindow.ShowDialog() == DialogResult.OK)
 			{
-				filePath = openFileDialog1.FileName;
-				inputBox.LoadFile(openFileDialog1.FileName, RichTextBoxStreamType.PlainText);
+				filePath = openFileWindow.FileName;
+				inputBox.LoadFile(openFileWindow.FileName, RichTextBoxStreamType.PlainText);
 				inputBox.ReadOnly = false;
 				inputBox.Enabled = true;
 			}
@@ -91,7 +91,7 @@ namespace TFCLab1
 
 		public static void SaveAsFileDialogue(ref string filePath, bool isFileModified, RichTextBox inputBox)
 		{
-			SaveFileDialog saveFileDialog1 = new SaveFileDialog
+			SaveFileDialog saveFileWindow = new SaveFileDialog
 			{
 				Filter = "Текстовые файлы (*.txt)|*.txt|Файлы (*.cs)|*.cs|Все файлы (*.*)|*.*",
 				Title = "Сохранить как"
@@ -99,12 +99,12 @@ namespace TFCLab1
 
 			if (!string.IsNullOrEmpty(filePath))
 			{
-				saveFileDialog1.FileName = Path.GetFileName(filePath);
+				saveFileWindow.FileName = Path.GetFileName(filePath);
 			}
 
-			if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+			if (saveFileWindow.ShowDialog() == DialogResult.OK)
 			{
-				filePath = saveFileDialog1.FileName;
+				filePath = saveFileWindow.FileName;
 				SaveExistingFile(ref filePath, ref isFileModified,inputBox);
 			}
 		}
@@ -204,7 +204,7 @@ namespace TFCLab1
 		public static void RunCompiler(RichTextBox inputRichBox, DataGridView dataGridViewOutput)
 		{
 			dataGridViewOutput.Rows.Clear();
-			Lexer lexer = new Lexer(inputRichBox.Text);
+			LexicalAnalyzer lexer = new LexicalAnalyzer(inputRichBox.Text);
 			List<Token> tokens = lexer.Tokenize();
 			foreach (Token token in tokens) { dataGridViewOutput.Rows.Add(token.CodeType, token.Type, token.Value, token.Column); }
 		}
