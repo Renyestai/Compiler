@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
@@ -198,6 +199,14 @@ namespace TFCLab1
 			}
 
 			return w;
+		}
+
+		public static void RunCompiler(RichTextBox inputRichBox, DataGridView dataGridViewOutput)
+		{
+			dataGridViewOutput.Rows.Clear();
+			Lexer lexer = new Lexer(inputRichBox.Text);
+			List<Token> tokens = lexer.Tokenize();
+			foreach (Token token in tokens) { dataGridViewOutput.Rows.Add(token.CodeType, token.Type, token.Value, token.Column); }
 		}
 	}
 }

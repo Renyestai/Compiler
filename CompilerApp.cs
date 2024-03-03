@@ -191,17 +191,13 @@ namespace TFCLab1
 
 		private void StartBtn_Click(object sender, EventArgs e)
 		{
-			//string text = inputRichBox.Text;
-			Lexer lexer = new Lexer(inputRichBox.Text);
-			List<Token> tokens = lexer.Tokenize();
+			AppFunctions.RunCompiler(inputRichBox, dataGridViewOutput);
 		}
 
 		private void ПускToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			Lexer lexer = new Lexer(inputRichBox.Text);
-			List<Token> tokens = lexer.Tokenize();
-			foreach(Token token in tokens) { dataGridViewOutput.Rows.Add(token.CodeType, token.Type, token.Value, token.Column); }
-			
+			AppFunctions.RunCompiler(inputRichBox, dataGridViewOutput);
+
 		}
 	}
 }
