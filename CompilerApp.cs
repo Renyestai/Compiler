@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 
@@ -18,7 +19,7 @@ namespace TFCLab1
 			inputRichBox.TextChanged += InputRichBox_TextChanged;
 			inputRichBox.VScroll += InputRichBox_VScroll;
 			inputRichBox.FontChanged += InputRichBox_FontChanged;
-			inputRichBox.SelectionChanged += inputRichBox_SelectionChanged;
+			inputRichBox.SelectionChanged += InputRichBox_SelectionChanged;
 		}
 		private void UndoFile()
 		{
@@ -52,7 +53,7 @@ namespace TFCLab1
 			AppFunctions.UpdateLineNumbers(LineNumberTextBox, inputRichBox, ClientRectangle);
 		}
 
-		private void inputRichBox_SelectionChanged(object sender, EventArgs e)
+		private void InputRichBox_SelectionChanged(object sender, EventArgs e)
 		{
 			int cursorPosition = inputRichBox.SelectionStart;
 			int currentLine = inputRichBox.GetLineFromCharIndex(cursorPosition) + 1;
@@ -64,7 +65,7 @@ namespace TFCLab1
 		private void СоздатьToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			AppFunctions.CreateNewFile(ref filePath, ref isFileModified, inputRichBox);
-			toolStripStatusLabel1.Text = "Создан новый файл";
+			//toolStripStatusLabel1.Text = "Создан новый файл";
 		}
 
 		private void CreateFileBtn_Click(object sender, EventArgs e)
@@ -188,5 +189,19 @@ namespace TFCLab1
 			AppFunctions.ExitApp(ref filePath, ref isFileModified, inputRichBox, e);
 		}
 
+		private void StartBtn_Click(object sender, EventArgs e)
+		{
+			//string text = inputRichBox.Text;
+			Lexer lexer = new Lexer(inputRichBox.Text);
+			List<Token> tokens = lexer.Tokenize();
+		}
+
+		private void ПускToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			Lexer lexer = new Lexer(inputRichBox.Text);
+			List<Token> tokens = lexer.Tokenize();
+			foreach(Token token in tokens) { dataGridViewOutput.Rows.Add(token.CodeType, token.Type, token.Value, token.Column); }
+			
+		}
 	}
 }

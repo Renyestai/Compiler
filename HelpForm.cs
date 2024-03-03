@@ -14,7 +14,7 @@ namespace TFCLab1
 
 		private void Help_Load(object sender, EventArgs e)
 		{
-			string htmlFilePath = @"C:\Users\fallr\source\repos\TFCLab1\ShowHelpHTMLPage.html";
+			string htmlFilePath = @"C:\Users\fallr\source\repos\TFCLab1 - Copy\ShowHelpHTMLPage.html";
 
 			webBrowserHelp.Navigate(htmlFilePath);
 		}

@@ -80,15 +80,20 @@ namespace TFCLab1
 			this.splitRichBoxContainer = new System.Windows.Forms.SplitContainer();
 			this.LineNumberTextBox = new System.Windows.Forms.RichTextBox();
 			this.inputRichBox = new System.Windows.Forms.RichTextBox();
-			this.outputRichBox = new System.Windows.Forms.RichTextBox();
+			this.dataGridViewOutput = new System.Windows.Forms.DataGridView();
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+			this.CodeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.LexerTypeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.LexemColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.LocationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.menuStrip.SuspendLayout();
 			this.toolStrip.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitRichBoxContainer)).BeginInit();
 			this.splitRichBoxContainer.Panel1.SuspendLayout();
 			this.splitRichBoxContainer.Panel2.SuspendLayout();
 			this.splitRichBoxContainer.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dataGridViewOutput)).BeginInit();
 			this.statusStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -285,6 +290,7 @@ namespace TFCLab1
 			this.пускToolStripMenuItem.Name = "пускToolStripMenuItem";
 			this.пускToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
 			this.пускToolStripMenuItem.Text = "Пуск";
+			this.пускToolStripMenuItem.Click += new System.EventHandler(this.ПускToolStripMenuItem_Click);
 			// 
 			// справкаToolStripMenuItem
 			// 
@@ -449,6 +455,7 @@ namespace TFCLab1
 			this.startBtn.Name = "startBtn";
 			this.startBtn.Size = new System.Drawing.Size(36, 36);
 			this.startBtn.Text = "Пуск";
+			this.startBtn.Click += new System.EventHandler(this.StartBtn_Click);
 			// 
 			// toolStripSeparator3
 			// 
@@ -501,11 +508,11 @@ namespace TFCLab1
 			// 
 			// splitRichBoxContainer.Panel2
 			// 
+			this.splitRichBoxContainer.Panel2.Controls.Add(this.dataGridViewOutput);
 			this.splitRichBoxContainer.Panel2.Controls.Add(this.statusStrip1);
-			this.splitRichBoxContainer.Panel2.Controls.Add(this.outputRichBox);
 			this.splitRichBoxContainer.Panel2MinSize = 200;
 			this.splitRichBoxContainer.Size = new System.Drawing.Size(1031, 524);
-			this.splitRichBoxContainer.SplitterDistance = 261;
+			this.splitRichBoxContainer.SplitterDistance = 200;
 			this.splitRichBoxContainer.TabIndex = 0;
 			// 
 			// LineNumberTextBox
@@ -521,7 +528,7 @@ namespace TFCLab1
 			this.LineNumberTextBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.LineNumberTextBox.Name = "LineNumberTextBox";
 			this.LineNumberTextBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-			this.LineNumberTextBox.Size = new System.Drawing.Size(38, 231);
+			this.LineNumberTextBox.Size = new System.Drawing.Size(38, 170);
 			this.LineNumberTextBox.TabIndex = 3;
 			this.LineNumberTextBox.TabStop = false;
 			this.LineNumberTextBox.Text = "";
@@ -540,34 +547,39 @@ namespace TFCLab1
 			this.inputRichBox.MinimumSize = new System.Drawing.Size(100, 0);
 			this.inputRichBox.Name = "inputRichBox";
 			this.inputRichBox.ReadOnly = true;
-			this.inputRichBox.Size = new System.Drawing.Size(961, 231);
+			this.inputRichBox.Size = new System.Drawing.Size(961, 170);
 			this.inputRichBox.TabIndex = 2;
 			this.inputRichBox.Text = "";
 			this.inputRichBox.TextChanged += new System.EventHandler(this.InputRichBox_TextChanged);
 			// 
-			// outputRichBox
+			// dataGridViewOutput
 			// 
-			this.outputRichBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+			this.dataGridViewOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.outputRichBox.BackColor = System.Drawing.SystemColors.Control;
-			this.outputRichBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.outputRichBox.Enabled = false;
-			this.outputRichBox.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.outputRichBox.Location = new System.Drawing.Point(12, 33);
-			this.outputRichBox.Margin = new System.Windows.Forms.Padding(12, 11, 12, 11);
-			this.outputRichBox.MinimumSize = new System.Drawing.Size(100, 0);
-			this.outputRichBox.Name = "outputRichBox";
-			this.outputRichBox.ReadOnly = true;
-			this.outputRichBox.Size = new System.Drawing.Size(1006, 187);
-			this.outputRichBox.TabIndex = 3;
-			this.outputRichBox.Text = "";
+			this.dataGridViewOutput.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+			this.dataGridViewOutput.BackgroundColor = System.Drawing.SystemColors.Control;
+			this.dataGridViewOutput.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.dataGridViewOutput.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dataGridViewOutput.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.CodeColumn,
+            this.LexerTypeColumn,
+            this.LexemColumn,
+            this.LocationColumn});
+			this.dataGridViewOutput.GridColor = System.Drawing.SystemColors.ActiveCaption;
+			this.dataGridViewOutput.Location = new System.Drawing.Point(11, 33);
+			this.dataGridViewOutput.Name = "dataGridViewOutput";
+			this.dataGridViewOutput.ReadOnly = true;
+			this.dataGridViewOutput.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.dataGridViewOutput.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+			this.dataGridViewOutput.Size = new System.Drawing.Size(1007, 260);
+			this.dataGridViewOutput.TabIndex = 6;
 			// 
 			// statusStrip1
 			// 
 			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-			this.statusStrip1.Location = new System.Drawing.Point(0, 235);
+			this.statusStrip1.Location = new System.Drawing.Point(0, 296);
 			this.statusStrip1.Name = "statusStrip1";
 			this.statusStrip1.Size = new System.Drawing.Size(1029, 22);
 			this.statusStrip1.TabIndex = 5;
@@ -580,6 +592,30 @@ namespace TFCLab1
 			this.toolStripStatusLabel1.Size = new System.Drawing.Size(48, 17);
 			this.toolStripStatusLabel1.Text = " Готово";
 			this.toolStripStatusLabel1.ToolTipText = "Готово";
+			// 
+			// CodeColumn
+			// 
+			this.CodeColumn.HeaderText = "Условный код";
+			this.CodeColumn.Name = "CodeColumn";
+			this.CodeColumn.ReadOnly = true;
+			// 
+			// LexerTypeColumn
+			// 
+			this.LexerTypeColumn.HeaderText = "Тип лексемы";
+			this.LexerTypeColumn.Name = "LexerTypeColumn";
+			this.LexerTypeColumn.ReadOnly = true;
+			// 
+			// LexemColumn
+			// 
+			this.LexemColumn.HeaderText = "Лексема";
+			this.LexemColumn.Name = "LexemColumn";
+			this.LexemColumn.ReadOnly = true;
+			// 
+			// LocationColumn
+			// 
+			this.LocationColumn.HeaderText = "Местоположение";
+			this.LocationColumn.Name = "LocationColumn";
+			this.LocationColumn.ReadOnly = true;
 			// 
 			// CompilerApp
 			// 
@@ -605,6 +641,7 @@ namespace TFCLab1
 			this.splitRichBoxContainer.Panel2.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitRichBoxContainer)).EndInit();
 			this.splitRichBoxContainer.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.dataGridViewOutput)).EndInit();
 			this.statusStrip1.ResumeLayout(false);
 			this.statusStrip1.PerformLayout();
 			this.ResumeLayout(false);
@@ -662,10 +699,14 @@ namespace TFCLab1
 		private ToolStripSeparator toolStripSeparator3;
 		private SplitContainer splitRichBoxContainer;
 		private RichTextBox inputRichBox;
-		private RichTextBox outputRichBox;
 		private RichTextBox LineNumberTextBox;
 		private StatusStrip statusStrip1;
 		private ToolStripStatusLabel toolStripStatusLabel1;
+		private DataGridView dataGridViewOutput;
+		private DataGridViewTextBoxColumn CodeColumn;
+		private DataGridViewTextBoxColumn LexerTypeColumn;
+		private DataGridViewTextBoxColumn LexemColumn;
+		private DataGridViewTextBoxColumn LocationColumn;
 	}
 }
 

@@ -180,7 +180,7 @@ namespace TFCLab1
 
 		public static int GetWidth(RichTextBox inputRichBox)
 		{
-			int w = 25;
+			int w;
 			// get total lines of richTextBox1    
 			int line = inputRichBox.Lines.Length;
 
