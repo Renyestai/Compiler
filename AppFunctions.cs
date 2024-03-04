@@ -206,7 +206,9 @@ namespace TFCLab1
 			dataGridViewOutput.Rows.Clear();
 			LexicalAnalyzer lexer = new LexicalAnalyzer(inputRichBox.Text);
 			List<Token> tokens = lexer.Tokenize();
-			foreach (Token token in tokens) { dataGridViewOutput.Rows.Add(token.CodeType, token.Type, token.Value, token.Column); }
+			foreach (Token token in tokens) {
+				string Location = token.FirstPosition + " - " + token.SecondPosition;
+				dataGridViewOutput.Rows.Add(token.CodeType, token.Type, token.Value, Location); }
 		}
 	}
 }
