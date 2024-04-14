@@ -40,7 +40,7 @@ public class LexicalAnalyzer
 			}
 			else if (currentChar == ',')
 			{
-				tokens.Add(new Token((int)TokenType.ArgumentIdentifier, TokenType.ArgumentIdentifier, currentChar.ToString(), position, position));
+				tokens.Add(new Token((int)TokenType.Comma, TokenType.Comma, currentChar.ToString(), position, position));
 				position++;
 			}
 			else if (currentChar == ';')

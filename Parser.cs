@@ -186,9 +186,14 @@ public class Parser
 		{
 			currentState = 14;
 		}
-		else // тут еще точка с запятой
+		else if (token.Type == TokenType.Semicolon)
+		{
+			currentState = 17;
+		}
+		else
 		{
 			errorTokens.Add(token);
+			currentState = 16;
 		}
 	}
 
