@@ -59,37 +59,59 @@ namespace TFCLab1
 			this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.вызовСправкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.видToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.изменитьШрифтToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStrip = new System.Windows.Forms.ToolStrip();
-			this.createFileBtn = new System.Windows.Forms.ToolStripButton();
-			this.openFileBtn = new System.Windows.Forms.ToolStripButton();
-			this.saveFileBtn = new System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-			this.undoBtn = new System.Windows.Forms.ToolStripButton();
-			this.redoBtn = new System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-			this.copyBtn = new System.Windows.Forms.ToolStripButton();
-			this.cutBtn = new System.Windows.Forms.ToolStripButton();
-			this.pasteBtn = new System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-			this.startBtn = new System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-			this.helpBtn = new System.Windows.Forms.ToolStripButton();
-			this.infoBtn = new System.Windows.Forms.ToolStripButton();
-			this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-			this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+			this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+			this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
 			this.splitRichBoxContainer = new System.Windows.Forms.SplitContainer();
 			this.LineNumberTextBox = new System.Windows.Forms.RichTextBox();
 			this.inputRichBox = new System.Windows.Forms.RichTextBox();
-			this.outputRichBox = new System.Windows.Forms.RichTextBox();
-			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-			this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+			this.tabControlOutput = new System.Windows.Forms.TabControl();
+			this.tabPageLexer = new System.Windows.Forms.TabPage();
+			this.dataGridViewLexer = new System.Windows.Forms.DataGridView();
+			this.CodeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.LexerTypeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.LexemColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.LocationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.tabPageParser = new System.Windows.Forms.TabPage();
+			this.dataGridViewParser = new System.Windows.Forms.DataGridView();
+			this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.statusStripLines = new System.Windows.Forms.StatusStrip();
+			this.toolStripStatusLabelRow = new System.Windows.Forms.ToolStripStatusLabel();
+			this.fontDialog = new System.Windows.Forms.FontDialog();
+			this.toolStripStatusLabelErrors = new System.Windows.Forms.ToolStripStatusLabel();
+			this.toolStripStatusLabelMiddle = new System.Windows.Forms.ToolStripStatusLabel();
+			this.createFileBtn = new System.Windows.Forms.ToolStripButton();
+			this.openFileBtn = new System.Windows.Forms.ToolStripButton();
+			this.saveFileBtn = new System.Windows.Forms.ToolStripButton();
+			this.undoBtn = new System.Windows.Forms.ToolStripButton();
+			this.redoBtn = new System.Windows.Forms.ToolStripButton();
+			this.copyBtn = new System.Windows.Forms.ToolStripButton();
+			this.cutBtn = new System.Windows.Forms.ToolStripButton();
+			this.pasteBtn = new System.Windows.Forms.ToolStripButton();
+			this.startBtn = new System.Windows.Forms.ToolStripButton();
+			this.helpBtn = new System.Windows.Forms.ToolStripButton();
+			this.infoBtn = new System.Windows.Forms.ToolStripButton();
+			this.toolStripStatusLabelClean = new System.Windows.Forms.ToolStripStatusLabel();
 			this.menuStrip.SuspendLayout();
 			this.toolStrip.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitRichBoxContainer)).BeginInit();
 			this.splitRichBoxContainer.Panel1.SuspendLayout();
 			this.splitRichBoxContainer.Panel2.SuspendLayout();
 			this.splitRichBoxContainer.SuspendLayout();
-			this.statusStrip1.SuspendLayout();
+			this.tabControlOutput.SuspendLayout();
+			this.tabPageLexer.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dataGridViewLexer)).BeginInit();
+			this.tabPageParser.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dataGridViewParser)).BeginInit();
+			this.statusStripLines.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// menuStrip
@@ -99,7 +121,8 @@ namespace TFCLab1
             this.правкаToolStripMenuItem,
             this.текстToolStripMenuItem,
             this.пускToolStripMenuItem,
-            this.справкаToolStripMenuItem});
+            this.справкаToolStripMenuItem,
+            this.видToolStripMenuItem});
 			this.menuStrip.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip.Name = "menuStrip";
 			this.menuStrip.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
@@ -237,54 +260,63 @@ namespace TFCLab1
 			this.постановкаЗадачиToolStripMenuItem.Name = "постановкаЗадачиToolStripMenuItem";
 			this.постановкаЗадачиToolStripMenuItem.Size = new System.Drawing.Size(288, 22);
 			this.постановкаЗадачиToolStripMenuItem.Text = "Постановка задачи";
+			this.постановкаЗадачиToolStripMenuItem.Click += new System.EventHandler(this.постановкаЗадачиToolStripMenuItem_Click);
 			// 
 			// грамматикаToolStripMenuItem
 			// 
 			this.грамматикаToolStripMenuItem.Name = "грамматикаToolStripMenuItem";
 			this.грамматикаToolStripMenuItem.Size = new System.Drawing.Size(288, 22);
 			this.грамматикаToolStripMenuItem.Text = "Грамматика";
+			this.грамматикаToolStripMenuItem.Click += new System.EventHandler(this.грамматикаToolStripMenuItem_Click);
 			// 
 			// классификацияграмматикиToolStripMenuItem
 			// 
 			this.классификацияграмматикиToolStripMenuItem.Name = "классификацияграмматикиToolStripMenuItem";
 			this.классификацияграмматикиToolStripMenuItem.Size = new System.Drawing.Size(288, 22);
 			this.классификацияграмматикиToolStripMenuItem.Text = "Классификация грамматики";
+			this.классификацияграмматикиToolStripMenuItem.Click += new System.EventHandler(this.классификацияграмматикиToolStripMenuItem_Click);
 			// 
 			// методанализаtoolStripMenuItem
 			// 
 			this.методанализаtoolStripMenuItem.Name = "методанализаtoolStripMenuItem";
 			this.методанализаtoolStripMenuItem.Size = new System.Drawing.Size(288, 22);
 			this.методанализаtoolStripMenuItem.Text = "Метод анализа";
+			this.методанализаtoolStripMenuItem.Click += new System.EventHandler(this.методанализаtoolStripMenuItem_Click);
 			// 
 			// диагностикаинейтрализацияошибокtoolStripMenuItem
 			// 
 			this.диагностикаинейтрализацияошибокtoolStripMenuItem.Name = "диагностикаинейтрализацияошибокtoolStripMenuItem";
 			this.диагностикаинейтрализацияошибокtoolStripMenuItem.Size = new System.Drawing.Size(288, 22);
 			this.диагностикаинейтрализацияошибокtoolStripMenuItem.Text = "Диагностика и нейтрализация ошибок";
+			this.диагностикаинейтрализацияошибокtoolStripMenuItem.Click += new System.EventHandler(this.диагностикаинейтрализацияошибокtoolStripMenuItem_Click);
 			// 
 			// тестовыйпримерtoolStripMenuItem
 			// 
 			this.тестовыйпримерtoolStripMenuItem.Name = "тестовыйпримерtoolStripMenuItem";
 			this.тестовыйпримерtoolStripMenuItem.Size = new System.Drawing.Size(288, 22);
 			this.тестовыйпримерtoolStripMenuItem.Text = "Тестовый пример";
+			this.тестовыйпримерtoolStripMenuItem.Click += new System.EventHandler(this.тестовыйпримерtoolStripMenuItem_Click);
 			// 
 			// списоклитературыtoolStripMenuItem
 			// 
 			this.списоклитературыtoolStripMenuItem.Name = "списоклитературыtoolStripMenuItem";
 			this.списоклитературыtoolStripMenuItem.Size = new System.Drawing.Size(288, 22);
 			this.списоклитературыtoolStripMenuItem.Text = "Список литературы";
+			this.списоклитературыtoolStripMenuItem.Click += new System.EventHandler(this.списоклитературыtoolStripMenuItem_Click);
 			// 
 			// исходныйкодпрограммыtoolStripMenuItem
 			// 
 			this.исходныйкодпрограммыtoolStripMenuItem.Name = "исходныйкодпрограммыtoolStripMenuItem";
 			this.исходныйкодпрограммыtoolStripMenuItem.Size = new System.Drawing.Size(288, 22);
 			this.исходныйкодпрограммыtoolStripMenuItem.Text = "Исходный код программы";
+			this.исходныйкодпрограммыtoolStripMenuItem.Click += new System.EventHandler(this.исходныйкодпрограммыtoolStripMenuItem_Click);
 			// 
 			// пускToolStripMenuItem
 			// 
 			this.пускToolStripMenuItem.Name = "пускToolStripMenuItem";
 			this.пускToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
 			this.пускToolStripMenuItem.Text = "Пуск";
+			this.пускToolStripMenuItem.Click += new System.EventHandler(this.ПускToolStripMenuItem_Click);
 			// 
 			// справкаToolStripMenuItem
 			// 
@@ -308,6 +340,21 @@ namespace TFCLab1
 			this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
 			this.оПрограммеToolStripMenuItem.Text = "О программе";
 			this.оПрограммеToolStripMenuItem.Click += new System.EventHandler(this.ОПрограммеToolStripMenuItem_Click);
+			// 
+			// видToolStripMenuItem
+			// 
+			this.видToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.изменитьШрифтToolStripMenuItem});
+			this.видToolStripMenuItem.Name = "видToolStripMenuItem";
+			this.видToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
+			this.видToolStripMenuItem.Text = "Вид";
+			// 
+			// изменитьШрифтToolStripMenuItem
+			// 
+			this.изменитьШрифтToolStripMenuItem.Name = "изменитьШрифтToolStripMenuItem";
+			this.изменитьШрифтToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+			this.изменитьШрифтToolStripMenuItem.Text = "Изменить шрифт";
+			this.изменитьШрифтToolStripMenuItem.Click += new System.EventHandler(this.ИзменитьШрифтToolStripMenuItem_Click);
 			// 
 			// toolStrip
 			// 
@@ -337,6 +384,268 @@ namespace TFCLab1
 			this.toolStrip.Size = new System.Drawing.Size(1031, 56);
 			this.toolStrip.TabIndex = 1;
 			this.toolStrip.Text = "controlPanel";
+			// 
+			// toolStripSeparator1
+			// 
+			this.toolStripSeparator1.AutoSize = false;
+			this.toolStripSeparator1.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
+			this.toolStripSeparator1.Name = "toolStripSeparator1";
+			this.toolStripSeparator1.Size = new System.Drawing.Size(6, 40);
+			// 
+			// toolStripSeparator2
+			// 
+			this.toolStripSeparator2.AutoSize = false;
+			this.toolStripSeparator2.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
+			this.toolStripSeparator2.Name = "toolStripSeparator2";
+			this.toolStripSeparator2.Size = new System.Drawing.Size(6, 40);
+			// 
+			// toolStripSeparator4
+			// 
+			this.toolStripSeparator4.AutoSize = false;
+			this.toolStripSeparator4.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
+			this.toolStripSeparator4.Name = "toolStripSeparator4";
+			this.toolStripSeparator4.Size = new System.Drawing.Size(6, 40);
+			// 
+			// toolStripSeparator3
+			// 
+			this.toolStripSeparator3.AutoSize = false;
+			this.toolStripSeparator3.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
+			this.toolStripSeparator3.Name = "toolStripSeparator3";
+			this.toolStripSeparator3.Size = new System.Drawing.Size(6, 40);
+			// 
+			// openFileDialog
+			// 
+			this.openFileDialog.FileName = "openFileDialog";
+			// 
+			// splitRichBoxContainer
+			// 
+			this.splitRichBoxContainer.BackColor = System.Drawing.SystemColors.ActiveCaption;
+			this.splitRichBoxContainer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.splitRichBoxContainer.Cursor = System.Windows.Forms.Cursors.Arrow;
+			this.splitRichBoxContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.splitRichBoxContainer.ForeColor = System.Drawing.SystemColors.Control;
+			this.splitRichBoxContainer.Location = new System.Drawing.Point(0, 80);
+			this.splitRichBoxContainer.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+			this.splitRichBoxContainer.Name = "splitRichBoxContainer";
+			this.splitRichBoxContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
+			// 
+			// splitRichBoxContainer.Panel1
+			// 
+			this.splitRichBoxContainer.Panel1.Controls.Add(this.LineNumberTextBox);
+			this.splitRichBoxContainer.Panel1.Controls.Add(this.inputRichBox);
+			this.splitRichBoxContainer.Panel1MinSize = 200;
+			// 
+			// splitRichBoxContainer.Panel2
+			// 
+			this.splitRichBoxContainer.Panel2.Controls.Add(this.tabControlOutput);
+			this.splitRichBoxContainer.Panel2.Controls.Add(this.statusStripLines);
+			this.splitRichBoxContainer.Panel2MinSize = 200;
+			this.splitRichBoxContainer.Size = new System.Drawing.Size(1031, 524);
+			this.splitRichBoxContainer.SplitterDistance = 200;
+			this.splitRichBoxContainer.TabIndex = 0;
+			// 
+			// LineNumberTextBox
+			// 
+			this.LineNumberTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+			this.LineNumberTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.LineNumberTextBox.Cursor = System.Windows.Forms.Cursors.Default;
+			this.LineNumberTextBox.DetectUrls = false;
+			this.LineNumberTextBox.Enabled = false;
+			this.LineNumberTextBox.Font = new System.Drawing.Font("Courier New", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.LineNumberTextBox.Location = new System.Drawing.Point(12, 11);
+			this.LineNumberTextBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+			this.LineNumberTextBox.Name = "LineNumberTextBox";
+			this.LineNumberTextBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+			this.LineNumberTextBox.Size = new System.Drawing.Size(38, 170);
+			this.LineNumberTextBox.TabIndex = 3;
+			this.LineNumberTextBox.TabStop = false;
+			this.LineNumberTextBox.Text = "";
+			// 
+			// inputRichBox
+			// 
+			this.inputRichBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.inputRichBox.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+			this.inputRichBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.inputRichBox.Enabled = false;
+			this.inputRichBox.Font = new System.Drawing.Font("Courier New", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.inputRichBox.Location = new System.Drawing.Point(56, 11);
+			this.inputRichBox.Margin = new System.Windows.Forms.Padding(12, 11, 12, 11);
+			this.inputRichBox.MinimumSize = new System.Drawing.Size(100, 0);
+			this.inputRichBox.Name = "inputRichBox";
+			this.inputRichBox.ReadOnly = true;
+			this.inputRichBox.Size = new System.Drawing.Size(961, 170);
+			this.inputRichBox.TabIndex = 2;
+			this.inputRichBox.Text = "";
+			this.inputRichBox.TextChanged += new System.EventHandler(this.InputRichBox_TextChanged);
+			// 
+			// tabControlOutput
+			// 
+			this.tabControlOutput.Alignment = System.Windows.Forms.TabAlignment.Bottom;
+			this.tabControlOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.tabControlOutput.Controls.Add(this.tabPageLexer);
+			this.tabControlOutput.Controls.Add(this.tabPageParser);
+			this.tabControlOutput.ItemSize = new System.Drawing.Size(80, 19);
+			this.tabControlOutput.Location = new System.Drawing.Point(10, 3);
+			this.tabControlOutput.Multiline = true;
+			this.tabControlOutput.Name = "tabControlOutput";
+			this.tabControlOutput.SelectedIndex = 0;
+			this.tabControlOutput.Size = new System.Drawing.Size(1007, 290);
+			this.tabControlOutput.TabIndex = 7;
+			// 
+			// tabPageLexer
+			// 
+			this.tabPageLexer.Controls.Add(this.dataGridViewLexer);
+			this.tabPageLexer.Location = new System.Drawing.Point(4, 4);
+			this.tabPageLexer.Name = "tabPageLexer";
+			this.tabPageLexer.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPageLexer.Size = new System.Drawing.Size(999, 263);
+			this.tabPageLexer.TabIndex = 0;
+			this.tabPageLexer.Text = "Лексер";
+			this.tabPageLexer.UseVisualStyleBackColor = true;
+			// 
+			// dataGridViewLexer
+			// 
+			this.dataGridViewLexer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.dataGridViewLexer.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+			this.dataGridViewLexer.BackgroundColor = System.Drawing.SystemColors.Control;
+			this.dataGridViewLexer.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.dataGridViewLexer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dataGridViewLexer.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.CodeColumn,
+            this.LexerTypeColumn,
+            this.LexemColumn,
+            this.LocationColumn});
+			this.dataGridViewLexer.GridColor = System.Drawing.SystemColors.ActiveCaption;
+			this.dataGridViewLexer.Location = new System.Drawing.Point(0, 0);
+			this.dataGridViewLexer.Name = "dataGridViewLexer";
+			this.dataGridViewLexer.ReadOnly = true;
+			this.dataGridViewLexer.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.dataGridViewLexer.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+			this.dataGridViewLexer.Size = new System.Drawing.Size(999, 267);
+			this.dataGridViewLexer.TabIndex = 6;
+			// 
+			// CodeColumn
+			// 
+			this.CodeColumn.HeaderText = "Условный код";
+			this.CodeColumn.Name = "CodeColumn";
+			this.CodeColumn.ReadOnly = true;
+			// 
+			// LexerTypeColumn
+			// 
+			this.LexerTypeColumn.HeaderText = "Тип лексемы";
+			this.LexerTypeColumn.Name = "LexerTypeColumn";
+			this.LexerTypeColumn.ReadOnly = true;
+			// 
+			// LexemColumn
+			// 
+			this.LexemColumn.HeaderText = "Лексема";
+			this.LexemColumn.Name = "LexemColumn";
+			this.LexemColumn.ReadOnly = true;
+			// 
+			// LocationColumn
+			// 
+			this.LocationColumn.HeaderText = "Местоположение";
+			this.LocationColumn.Name = "LocationColumn";
+			this.LocationColumn.ReadOnly = true;
+			// 
+			// tabPageParser
+			// 
+			this.tabPageParser.Controls.Add(this.dataGridViewParser);
+			this.tabPageParser.Location = new System.Drawing.Point(4, 4);
+			this.tabPageParser.Name = "tabPageParser";
+			this.tabPageParser.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPageParser.Size = new System.Drawing.Size(999, 263);
+			this.tabPageParser.TabIndex = 1;
+			this.tabPageParser.Text = "Парсер";
+			this.tabPageParser.UseVisualStyleBackColor = true;
+			// 
+			// dataGridViewParser
+			// 
+			this.dataGridViewParser.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.dataGridViewParser.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+			this.dataGridViewParser.BackgroundColor = System.Drawing.SystemColors.Control;
+			this.dataGridViewParser.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.dataGridViewParser.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dataGridViewParser.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4});
+			this.dataGridViewParser.GridColor = System.Drawing.SystemColors.ActiveCaption;
+			this.dataGridViewParser.Location = new System.Drawing.Point(0, 0);
+			this.dataGridViewParser.Name = "dataGridViewParser";
+			this.dataGridViewParser.ReadOnly = true;
+			this.dataGridViewParser.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.dataGridViewParser.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+			this.dataGridViewParser.Size = new System.Drawing.Size(999, 267);
+			this.dataGridViewParser.TabIndex = 7;
+			// 
+			// dataGridViewTextBoxColumn1
+			// 
+			this.dataGridViewTextBoxColumn1.HeaderText = "Номер ошибки";
+			this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+			this.dataGridViewTextBoxColumn1.ReadOnly = true;
+			// 
+			// dataGridViewTextBoxColumn3
+			// 
+			this.dataGridViewTextBoxColumn3.HeaderText = "Неверный фрагмент";
+			this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+			this.dataGridViewTextBoxColumn3.ReadOnly = true;
+			// 
+			// dataGridViewTextBoxColumn4
+			// 
+			this.dataGridViewTextBoxColumn4.HeaderText = "Местоположение";
+			this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+			this.dataGridViewTextBoxColumn4.ReadOnly = true;
+			// 
+			// statusStripLines
+			// 
+			this.statusStripLines.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabelErrors,
+            this.toolStripStatusLabelClean,
+            this.toolStripStatusLabelMiddle,
+            this.toolStripStatusLabelRow});
+			this.statusStripLines.Location = new System.Drawing.Point(0, 296);
+			this.statusStripLines.Name = "statusStripLines";
+			this.statusStripLines.Size = new System.Drawing.Size(1029, 22);
+			this.statusStripLines.TabIndex = 5;
+			// 
+			// toolStripStatusLabelRow
+			// 
+			this.toolStripStatusLabelRow.BackColor = System.Drawing.SystemColors.Control;
+			this.toolStripStatusLabelRow.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+			this.toolStripStatusLabelRow.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+			this.toolStripStatusLabelRow.Name = "toolStripStatusLabelRow";
+			this.toolStripStatusLabelRow.Size = new System.Drawing.Size(108, 17);
+			this.toolStripStatusLabelRow.Text = "Строка:   Столбец:";
+			this.toolStripStatusLabelRow.ToolTipText = "Готово";
+			// 
+			// toolStripStatusLabelErrors
+			// 
+			this.toolStripStatusLabelErrors.BackColor = System.Drawing.SystemColors.Control;
+			this.toolStripStatusLabelErrors.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+			//this.toolStripStatusLabelErrors.Image = global::TFCLab1_Copy.Properties.Resources.correct;
+			this.toolStripStatusLabelErrors.Name = "toolStripStatusLabelErrors";
+			this.toolStripStatusLabelErrors.Size = new System.Drawing.Size(158, 17);
+			this.toolStripStatusLabelErrors.Text = "Ошибок не обнаружено";
+			this.toolStripStatusLabelErrors.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// toolStripStatusLabelMiddle
+			// 
+			this.toolStripStatusLabelMiddle.BackColor = System.Drawing.SystemColors.Control;
+			this.toolStripStatusLabelMiddle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+			this.toolStripStatusLabelMiddle.Name = "toolStripStatusLabelMiddle";
+			this.toolStripStatusLabelMiddle.Size = new System.Drawing.Size(701, 17);
+			this.toolStripStatusLabelMiddle.Spring = true;
+			this.toolStripStatusLabelMiddle.Text = "toolStripStatusLabel1";
 			// 
 			// createFileBtn
 			// 
@@ -370,13 +679,6 @@ namespace TFCLab1
 			this.saveFileBtn.Text = "Сохранить";
 			this.saveFileBtn.Click += new System.EventHandler(this.SaveFileBtn_Click);
 			// 
-			// toolStripSeparator1
-			// 
-			this.toolStripSeparator1.AutoSize = false;
-			this.toolStripSeparator1.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
-			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(6, 40);
-			// 
 			// undoBtn
 			// 
 			this.undoBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -396,13 +698,6 @@ namespace TFCLab1
 			this.redoBtn.Size = new System.Drawing.Size(36, 36);
 			this.redoBtn.Text = "Повторить";
 			this.redoBtn.Click += new System.EventHandler(this.RedoBtn_Click);
-			// 
-			// toolStripSeparator2
-			// 
-			this.toolStripSeparator2.AutoSize = false;
-			this.toolStripSeparator2.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
-			this.toolStripSeparator2.Name = "toolStripSeparator2";
-			this.toolStripSeparator2.Size = new System.Drawing.Size(6, 40);
 			// 
 			// copyBtn
 			// 
@@ -434,13 +729,6 @@ namespace TFCLab1
 			this.pasteBtn.Text = "Вставить";
 			this.pasteBtn.Click += new System.EventHandler(this.PasteBtn_Click);
 			// 
-			// toolStripSeparator4
-			// 
-			this.toolStripSeparator4.AutoSize = false;
-			this.toolStripSeparator4.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
-			this.toolStripSeparator4.Name = "toolStripSeparator4";
-			this.toolStripSeparator4.Size = new System.Drawing.Size(6, 40);
-			// 
 			// startBtn
 			// 
 			this.startBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -449,13 +737,7 @@ namespace TFCLab1
 			this.startBtn.Name = "startBtn";
 			this.startBtn.Size = new System.Drawing.Size(36, 36);
 			this.startBtn.Text = "Пуск";
-			// 
-			// toolStripSeparator3
-			// 
-			this.toolStripSeparator3.AutoSize = false;
-			this.toolStripSeparator3.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
-			this.toolStripSeparator3.Name = "toolStripSeparator3";
-			this.toolStripSeparator3.Size = new System.Drawing.Size(6, 40);
+			this.startBtn.Click += new System.EventHandler(this.StartBtn_Click);
 			// 
 			// helpBtn
 			// 
@@ -477,109 +759,15 @@ namespace TFCLab1
 			this.infoBtn.Text = "О программе";
 			this.infoBtn.Click += new System.EventHandler(this.InfoBtn_Click);
 			// 
-			// openFileDialog1
+			// toolStripStatusLabelClean
 			// 
-			this.openFileDialog1.FileName = "openFileDialog";
-			// 
-			// splitRichBoxContainer
-			// 
-			this.splitRichBoxContainer.BackColor = System.Drawing.SystemColors.ActiveCaption;
-			this.splitRichBoxContainer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.splitRichBoxContainer.Cursor = System.Windows.Forms.Cursors.Arrow;
-			this.splitRichBoxContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.splitRichBoxContainer.ForeColor = System.Drawing.SystemColors.Control;
-			this.splitRichBoxContainer.Location = new System.Drawing.Point(0, 80);
-			this.splitRichBoxContainer.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-			this.splitRichBoxContainer.Name = "splitRichBoxContainer";
-			this.splitRichBoxContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
-			// 
-			// splitRichBoxContainer.Panel1
-			// 
-			this.splitRichBoxContainer.Panel1.Controls.Add(this.LineNumberTextBox);
-			this.splitRichBoxContainer.Panel1.Controls.Add(this.inputRichBox);
-			this.splitRichBoxContainer.Panel1MinSize = 200;
-			// 
-			// splitRichBoxContainer.Panel2
-			// 
-			this.splitRichBoxContainer.Panel2.Controls.Add(this.statusStrip1);
-			this.splitRichBoxContainer.Panel2.Controls.Add(this.outputRichBox);
-			this.splitRichBoxContainer.Panel2MinSize = 200;
-			this.splitRichBoxContainer.Size = new System.Drawing.Size(1031, 524);
-			this.splitRichBoxContainer.SplitterDistance = 261;
-			this.splitRichBoxContainer.TabIndex = 0;
-			// 
-			// LineNumberTextBox
-			// 
-			this.LineNumberTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-			this.LineNumberTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.LineNumberTextBox.Cursor = System.Windows.Forms.Cursors.Default;
-			this.LineNumberTextBox.DetectUrls = false;
-			this.LineNumberTextBox.Enabled = false;
-			this.LineNumberTextBox.Font = new System.Drawing.Font("Courier New", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.LineNumberTextBox.Location = new System.Drawing.Point(12, 11);
-			this.LineNumberTextBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-			this.LineNumberTextBox.Name = "LineNumberTextBox";
-			this.LineNumberTextBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-			this.LineNumberTextBox.Size = new System.Drawing.Size(38, 231);
-			this.LineNumberTextBox.TabIndex = 3;
-			this.LineNumberTextBox.TabStop = false;
-			this.LineNumberTextBox.Text = "";
-			// 
-			// inputRichBox
-			// 
-			this.inputRichBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.inputRichBox.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-			this.inputRichBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.inputRichBox.Enabled = false;
-			this.inputRichBox.Font = new System.Drawing.Font("Courier New", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.inputRichBox.Location = new System.Drawing.Point(56, 11);
-			this.inputRichBox.Margin = new System.Windows.Forms.Padding(12, 11, 12, 11);
-			this.inputRichBox.MinimumSize = new System.Drawing.Size(100, 0);
-			this.inputRichBox.Name = "inputRichBox";
-			this.inputRichBox.ReadOnly = true;
-			this.inputRichBox.Size = new System.Drawing.Size(961, 231);
-			this.inputRichBox.TabIndex = 2;
-			this.inputRichBox.Text = "";
-			this.inputRichBox.TextChanged += new System.EventHandler(this.InputRichBox_TextChanged);
-			// 
-			// outputRichBox
-			// 
-			this.outputRichBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.outputRichBox.BackColor = System.Drawing.SystemColors.Control;
-			this.outputRichBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.outputRichBox.Enabled = false;
-			this.outputRichBox.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.outputRichBox.Location = new System.Drawing.Point(12, 33);
-			this.outputRichBox.Margin = new System.Windows.Forms.Padding(12, 11, 12, 11);
-			this.outputRichBox.MinimumSize = new System.Drawing.Size(100, 0);
-			this.outputRichBox.Name = "outputRichBox";
-			this.outputRichBox.ReadOnly = true;
-			this.outputRichBox.Size = new System.Drawing.Size(1006, 187);
-			this.outputRichBox.TabIndex = 3;
-			this.outputRichBox.Text = "";
-			// 
-			// statusStrip1
-			// 
-			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1});
-			this.statusStrip1.Location = new System.Drawing.Point(0, 235);
-			this.statusStrip1.Name = "statusStrip1";
-			this.statusStrip1.Size = new System.Drawing.Size(1029, 22);
-			this.statusStrip1.TabIndex = 5;
-			// 
-			// toolStripStatusLabel1
-			// 
-			this.toolStripStatusLabel1.BackColor = System.Drawing.SystemColors.Control;
-			this.toolStripStatusLabel1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-			this.toolStripStatusLabel1.Size = new System.Drawing.Size(48, 17);
-			this.toolStripStatusLabel1.Text = " Готово";
-			this.toolStripStatusLabel1.ToolTipText = "Готово";
+			this.toolStripStatusLabelClean.BackColor = System.Drawing.SystemColors.Control;
+			this.toolStripStatusLabelClean.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+			this.toolStripStatusLabelClean.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripStatusLabelClean.Name = "toolStripStatusLabelClean";
+			this.toolStripStatusLabelClean.Size = new System.Drawing.Size(0, 17);
+			this.toolStripStatusLabelClean.Text = "toolStripStatusLabel1";
+			this.toolStripStatusLabelClean.Click += new System.EventHandler(this.toolStripStatusLabelClean_Click);
 			// 
 			// CompilerApp
 			// 
@@ -605,8 +793,13 @@ namespace TFCLab1
 			this.splitRichBoxContainer.Panel2.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitRichBoxContainer)).EndInit();
 			this.splitRichBoxContainer.ResumeLayout(false);
-			this.statusStrip1.ResumeLayout(false);
-			this.statusStrip1.PerformLayout();
+			this.tabControlOutput.ResumeLayout(false);
+			this.tabPageLexer.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.dataGridViewLexer)).EndInit();
+			this.tabPageParser.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.dataGridViewParser)).EndInit();
+			this.statusStripLines.ResumeLayout(false);
+			this.statusStripLines.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -648,8 +841,8 @@ namespace TFCLab1
 		private System.Windows.Forms.ToolStripButton startBtn;
 		private System.Windows.Forms.ToolStripButton helpBtn;
 		private System.Windows.Forms.ToolStripButton infoBtn;
-		private System.Windows.Forms.SaveFileDialog saveFileDialog1;
-		private System.Windows.Forms.OpenFileDialog openFileDialog1;
+		private System.Windows.Forms.SaveFileDialog saveFileDialog;
+		private System.Windows.Forms.OpenFileDialog openFileDialog;
 		private System.Windows.Forms.ToolStripMenuItem методанализаtoolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem диагностикаинейтрализацияошибокtoolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem тестовыйпримерtoolStripMenuItem;
@@ -662,10 +855,27 @@ namespace TFCLab1
 		private ToolStripSeparator toolStripSeparator3;
 		private SplitContainer splitRichBoxContainer;
 		private RichTextBox inputRichBox;
-		private RichTextBox outputRichBox;
 		private RichTextBox LineNumberTextBox;
-		private StatusStrip statusStrip1;
-		private ToolStripStatusLabel toolStripStatusLabel1;
+		private StatusStrip statusStripLines;
+		private DataGridView dataGridViewLexer;
+		private DataGridViewTextBoxColumn CodeColumn;
+		private DataGridViewTextBoxColumn LexerTypeColumn;
+		private DataGridViewTextBoxColumn LexemColumn;
+		private DataGridViewTextBoxColumn LocationColumn;
+		private FontDialog fontDialog;
+		private ToolStripMenuItem видToolStripMenuItem;
+		private ToolStripMenuItem изменитьШрифтToolStripMenuItem;
+		private TabControl tabControlOutput;
+		private TabPage tabPageLexer;
+		private TabPage tabPageParser;
+		private DataGridView dataGridViewParser;
+		private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+		private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+		private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+		private ToolStripStatusLabel toolStripStatusLabelErrors;
+		private ToolStripStatusLabel toolStripStatusLabelMiddle;
+		private ToolStripStatusLabel toolStripStatusLabelRow;
+		private ToolStripStatusLabel toolStripStatusLabelClean;
 	}
 }
 

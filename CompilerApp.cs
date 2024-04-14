@@ -1,7 +1,8 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
-
-
+using System.IO;
+  
 namespace TFCLab1
 {
 	public partial class CompilerApp : Form
@@ -18,7 +19,8 @@ namespace TFCLab1
 			inputRichBox.TextChanged += InputRichBox_TextChanged;
 			inputRichBox.VScroll += InputRichBox_VScroll;
 			inputRichBox.FontChanged += InputRichBox_FontChanged;
-			inputRichBox.SelectionChanged += inputRichBox_SelectionChanged;
+			inputRichBox.SelectionChanged += InputRichBox_SelectionChanged;
+			
 		}
 		private void UndoFile()
 		{
@@ -35,7 +37,8 @@ namespace TFCLab1
 		{
 			AppFunctions.FileModifiedNotSaved(ref isFileModified);
 			AppFunctions.UpdateLineNumbers(LineNumberTextBox, inputRichBox, ClientRectangle);
-			
+			AppFunctions.HighlightKeywords(inputRichBox);
+
 		}
 
 		private void InputRichBox_VScroll(object sender, EventArgs e)
@@ -45,26 +48,27 @@ namespace TFCLab1
 			LineNumberTextBox.Invalidate();
 		}
 
-		private void InputRichBox_FontChanged(object sender, EventArgs e)//если будет меняться шрифт
+		private void InputRichBox_FontChanged(object sender, EventArgs e) //если будет меняться шрифт
 		{
 			LineNumberTextBox.Font = inputRichBox.Font;
 			inputRichBox.Select();
 			AppFunctions.UpdateLineNumbers(LineNumberTextBox, inputRichBox, ClientRectangle);
 		}
 
-		private void inputRichBox_SelectionChanged(object sender, EventArgs e)
+		private void InputRichBox_SelectionChanged(object sender, EventArgs e)
 		{
 			int cursorPosition = inputRichBox.SelectionStart;
 			int currentLine = inputRichBox.GetLineFromCharIndex(cursorPosition) + 1;
+			int currentColumn = cursorPosition - inputRichBox.GetFirstCharIndexFromLine(currentLine - 1) +1;
 			inputRichBox.Update();
-			toolStripStatusLabel1.Text = "Строка: " + currentLine.ToString();
+			toolStripStatusLabelRow.Text = "Строка: " + currentLine.ToString() + "  Столбец: " + currentColumn.ToString();
 		}
 
 
 		private void СоздатьToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			AppFunctions.CreateNewFile(ref filePath, ref isFileModified, inputRichBox);
-			toolStripStatusLabel1.Text = "Создан новый файл";
+			
 		}
 
 		private void CreateFileBtn_Click(object sender, EventArgs e)
@@ -96,7 +100,7 @@ namespace TFCLab1
 		private void СохранитьКакToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			AppFunctions.SaveAsFileDialogue(ref filePath, isFileModified, inputRichBox);
-			toolStripStatusLabel1.Text = "Файл сохранен";
+			//toolStripStatusLabel1.Text = "Файл сохранен";
 		}
 
 		private void ОтменитьToolStripMenuItem_Click(object sender, EventArgs e)
@@ -188,5 +192,106 @@ namespace TFCLab1
 			AppFunctions.ExitApp(ref filePath, ref isFileModified, inputRichBox, e);
 		}
 
+		private void StartBtn_Click(object sender, EventArgs e)
+		{
+			AppFunctions.RunCompiler(inputRichBox, dataGridViewLexer, dataGridViewParser, toolStripStatusLabelErrors, toolStripStatusLabelClean);
+		}
+
+		private void ПускToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			AppFunctions.RunCompiler(inputRichBox, dataGridViewLexer, dataGridViewParser, toolStripStatusLabelErrors, toolStripStatusLabelClean);
+
+		}
+
+		private void ИзменитьШрифтToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			if (fontDialog.ShowDialog() == DialogResult.OK)
+			{
+				// Получаем выбранный шрифт из диалога
+				Font selectedFont = fontDialog.Font;
+
+				// Устанавливаем выбранный шрифт для элемента управления (например, для TextBox)
+				inputRichBox.Font = selectedFont;
+
+				// Устанавливаем выбранный шрифт для всех столбцов DataGridView
+				foreach (DataGridViewRow row in dataGridViewLexer.Rows)
+				{
+					row.DefaultCellStyle.Font = selectedFont;
+				}
+
+				// Устанавливаем выбранный шрифт для всех столбцов DataGridView
+				foreach (DataGridViewRow row in dataGridViewParser.Rows)
+				{
+					row.DefaultCellStyle.Font = selectedFont;
+				}
+			}
+		}
+
+		private void постановкаЗадачиToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			HtmlHelper.OpenInBrowser(@"Resources\TaskAssigment.html");
+		}
+
+		private void тестовыйпримерtoolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			string filePath = @"Resources\right_example.txt"; //..\..\Resources\right_example.txt
+
+			try
+			{
+				// Открываем текстовый файл для чтения
+				using (StreamReader sr = new StreamReader(filePath))
+				{
+					// Читаем текст из файла
+					string text = sr.ReadToEnd();
+
+					// Помещаем текст в RichTextBox
+					inputRichBox.Text = text;
+					inputRichBox.ReadOnly = false;
+					inputRichBox.Enabled = true;
+				}
+			}
+			catch (IOException ex)
+			{
+				// Обработка исключений, связанных с чтением файла
+				MessageBox.Show("Ошибка чтения файла: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+			}
+			
+		}
+
+		private void исходныйкодпрограммыtoolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			HtmlHelper.OpenInBrowser("https://github.com/Renyestai/Compiler");
+		}
+
+		private void грамматикаToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			HtmlHelper.OpenInBrowser(@"Resources\Grammar.html");
+		}
+
+		private void классификацияграмматикиToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			HtmlHelper.OpenInBrowser(@"Resources\GrammarClassification.html");
+		}
+
+		private void методанализаtoolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			HtmlHelper.OpenInBrowser(@"Resources\MethodofAnalysis.html");
+		}
+
+		private void диагностикаинейтрализацияошибокtoolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			HtmlHelper.OpenInBrowser(@"Resources\NeutrErrors.html");
+		}
+
+		private void списоклитературыtoolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			HtmlHelper.OpenInBrowser(@"Resources\ListOfLiterature.html");
+		}
+
+		private void toolStripStatusLabelClean_Click(object sender, EventArgs e) //запуск метода Айронса
+		{
+
+		}
 	}
 }

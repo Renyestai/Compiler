@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace TFCLab1
@@ -58,7 +60,7 @@ namespace TFCLab1
 						SaveFile(ref filePath, ref isFileModified, inputBox);
 						break;
 					case DialogResult.No:
-						OpenFileDialogue(inputBox,ref filePath);
+						OpenFileDialogue(inputBox, ref filePath);
 						break;
 					default:
 						break;
@@ -66,7 +68,7 @@ namespace TFCLab1
 			}
 			else
 			{
-				OpenFileDialogue(inputBox,ref filePath);
+				OpenFileDialogue(inputBox, ref filePath);
 			}
 			FileModifiedSaved(ref isFileModified);
 		}
@@ -105,7 +107,7 @@ namespace TFCLab1
 			if (saveFileWindow.ShowDialog() == DialogResult.OK)
 			{
 				filePath = saveFileWindow.FileName;
-				SaveExistingFile(ref filePath, ref isFileModified,inputBox);
+				SaveExistingFile(ref filePath, ref isFileModified, inputBox);
 			}
 		}
 
@@ -115,7 +117,7 @@ namespace TFCLab1
 			FileModifiedSaved(ref isFileModified);
 		}
 
-		public static void SaveFile(ref string filePath,ref bool isFileModified, RichTextBox inputBox)
+		public static void SaveFile(ref string filePath, ref bool isFileModified, RichTextBox inputBox)
 		{
 			if (!string.IsNullOrEmpty(filePath))
 			{
@@ -127,7 +129,7 @@ namespace TFCLab1
 			}
 		}
 
-		public static void ExitApp(ref string filePath, ref	bool isFileModified, RichTextBox inputBox, FormClosingEventArgs e)
+		public static void ExitApp(ref string filePath, ref bool isFileModified, RichTextBox inputBox, FormClosingEventArgs e)
 		{
 			if (isFileModified)
 			{
@@ -173,7 +175,7 @@ namespace TFCLab1
 			lineNumbersRichBox.Text = "";
 			lineNumbersRichBox.Width = GetWidth(inputRichBox);
 			lineNumbersRichBox.Height = inputRichBox.Height;
-			for (int i = lineIndex; i < lineLastIndex + 1 ; i++)
+			for (int i = lineIndex; i < lineLastIndex + 1; i++)
 			{
 				lineNumbersRichBox.Text += i + 1 + "\n";
 			}
@@ -201,14 +203,71 @@ namespace TFCLab1
 			return w;
 		}
 
-		public static void RunCompiler(RichTextBox inputRichBox, DataGridView dataGridViewOutput)
+		public static void HighlightKeywords(RichTextBox inputRichBox)
 		{
-			dataGridViewOutput.Rows.Clear();
+			//await Task.Delay(500);
+			int originalSelectionStart = inputRichBox.SelectionStart;
+			int originalSelectionLength = inputRichBox.SelectionLength;
+			// Определяем ключевые слова PHP
+			string[] keywords = { "if", "else", "while", "foreach", "function", "class", "return" };
+
+			foreach (var keyword in keywords)
+			{
+				Regex regex = new Regex("\\b" + Regex.Escape(keyword) + "\\b", RegexOptions.IgnoreCase);
+				MatchCollection matches = regex.Matches(inputRichBox.Text);
+				foreach (Match match in matches)
+				{
+					inputRichBox.Select(match.Index, match.Length);
+					inputRichBox.SelectionColor = Color.Blue; // Или любой другой цвет
+					inputRichBox.SelectionFont = new Font(inputRichBox.Font, FontStyle.Regular);
+				}
+			}
+
+			inputRichBox.Select(originalSelectionStart, originalSelectionLength);
+			inputRichBox.SelectionColor = inputRichBox.ForeColor;
+			inputRichBox.SelectionFont = new Font(inputRichBox.Font, FontStyle.Regular);
+		}
+
+
+
+		public static void RunCompiler(RichTextBox inputRichBox, DataGridView dataGridViewLexer, DataGridView dataGridViewParser, ToolStripStatusLabel toolStripStatusLabelErrors, ToolStripStatusLabel toolStripStatusLabelClean)
+		{
+			dataGridViewLexer.Rows.Clear();
+			dataGridViewParser.Rows.Clear();
+
+			int numOfErrors = 0;
+			// Лексический анализ
 			LexicalAnalyzer lexer = new LexicalAnalyzer(inputRichBox.Text);
 			List<Token> tokens = lexer.Tokenize();
-			foreach (Token token in tokens) {
-				string Location = token.FirstPosition + " - " + token.SecondPosition;
-				dataGridViewOutput.Rows.Add(token.CodeType, token.Type, token.Value, Location); }
+
+			// Синтаксический анализ
+			Parser parser = new Parser(tokens);
+			List<Token> errorTokens = parser.Parse();
+
+			foreach (Token token in tokens)
+			{
+				dataGridViewLexer.Rows.Add(token.CodeType, token.Type, token.Value, token.FirstPosition + " - " + token.SecondPosition);
+			}
+
+			if (errorTokens.Any()) // если ошибки есть
+			{
+				toolStripStatusLabelErrors.Image = Image.FromFile(@"Resources\error.png");
+				toolStripStatusLabelErrors.Text = errorTokens.Count.ToString();
+				toolStripStatusLabelClean.Image = Image.FromFile(@"Resources\mop.png");
+
+				foreach (Token token in errorTokens)
+				{
+					dataGridViewParser.Rows.Add(++numOfErrors, token.Value, token.FirstPosition + " - " + token.SecondPosition);
+				}
+
+			}
+			else
+			{
+				toolStripStatusLabelErrors.Image = Image.FromFile(@"Resources\correct.png");
+				toolStripStatusLabelErrors.Text = "Ошибок не обнаружено";
+				toolStripStatusLabelClean.Image = null;
+			}
+
 		}
 	}
 }
