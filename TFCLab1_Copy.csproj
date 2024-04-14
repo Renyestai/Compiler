@@ -67,6 +67,7 @@
     <Compile Include="Parser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Token.cs" />
     <EmbeddedResource Include="CompilerApp.resx">
       <DependentUpon>CompilerApp.cs</DependentUpon>
     </EmbeddedResource>
@@ -98,6 +99,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="idea_creativity_creative_abstract_shape_grid_icon_226264.ico" />
+    <Content Include="Resources\Grammar.html" />
+    <Content Include="Resources\GrammarClassification.html" />
+    <Content Include="Resources\Help.html" />
+    <Content Include="Resources\ListOfLiterature.html" />
+    <Content Include="Resources\NeutrErrors.html" />
+    <Content Include="Resources\right_example.txt" />
+    <Content Include="Resources\TaskAssigment.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
