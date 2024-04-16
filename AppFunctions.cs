@@ -228,8 +228,6 @@ namespace TFCLab1
 			inputRichBox.SelectionFont = new Font(inputRichBox.Font, FontStyle.Regular);
 		}
 
-
-
 		public static void RunCompiler(RichTextBox inputRichBox, DataGridView dataGridViewLexer, DataGridView dataGridViewParser, ToolStripStatusLabel toolStripStatusLabelErrors, ToolStripStatusLabel toolStripStatusLabelClean)
 		{
 			dataGridViewLexer.Rows.Clear();
@@ -243,11 +241,11 @@ namespace TFCLab1
 			// Синтаксический анализ
 			Parser parser = new Parser(tokens);
 			List<Token> errorTokens = parser.Parse();
-
 			foreach (Token token in tokens)
 			{
 				dataGridViewLexer.Rows.Add(token.CodeType, token.Type, token.Value, token.FirstPosition + " - " + token.SecondPosition);
 			}
+
 
 			if (errorTokens.Any()) // если ошибки есть
 			{
@@ -257,7 +255,7 @@ namespace TFCLab1
 
 				foreach (Token token in errorTokens)
 				{
-					dataGridViewParser.Rows.Add(++numOfErrors, token.Value, token.FirstPosition + " - " + token.SecondPosition);
+					dataGridViewParser.Rows.Add(++numOfErrors, "Неверный фрагмент: " + token.Value + ". ", token.FirstPosition + " - " + token.SecondPosition);
 				}
 
 			}

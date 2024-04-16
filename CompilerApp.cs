@@ -20,7 +20,6 @@ namespace TFCLab1
 			inputRichBox.VScroll += InputRichBox_VScroll;
 			inputRichBox.FontChanged += InputRichBox_FontChanged;
 			inputRichBox.SelectionChanged += InputRichBox_SelectionChanged;
-			
 		}
 		private void UndoFile()
 		{

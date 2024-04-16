@@ -30,57 +30,57 @@ public class LexicalAnalyzer
 
 			else if (currentChar == '(')
 			{
-				tokens.Add(new Token((int)TokenType.LeftParenthesis,TokenType.LeftParenthesis, currentChar.ToString(), position, position));
+				tokens.Add(new Token((int)TokenType.LeftParenthesis,TokenType.LeftParenthesis, currentChar.ToString(), position, position, " "));
 				position++;
 			}
 			else if (currentChar == ')')
 			{
-				tokens.Add(new Token((int)TokenType.RightParenthesis, TokenType.RightParenthesis, currentChar.ToString(), position, position));
+				tokens.Add(new Token((int)TokenType.RightParenthesis, TokenType.RightParenthesis, currentChar.ToString(), position, position, " "));
 				position++;
 			}
 			else if (currentChar == ',')
 			{
-				tokens.Add(new Token((int)TokenType.Comma, TokenType.Comma, currentChar.ToString(), position, position));
+				tokens.Add(new Token((int)TokenType.Comma, TokenType.Comma, currentChar.ToString(), position, position, " "));
 				position++;
 			}
 			else if (currentChar == ';')
 			{
-				tokens.Add(new Token((int)TokenType.Semicolon, TokenType.Semicolon, currentChar.ToString(), position, position));
+				tokens.Add(new Token((int)TokenType.Semicolon, TokenType.Semicolon, currentChar.ToString(), position, position, " "));
 				position++;
 			}
 			else if (currentChar == '+')
 			{
-				tokens.Add(new Token((int)TokenType.Add, TokenType.Add, currentChar.ToString(), position, position));
+				tokens.Add(new Token((int)TokenType.Add, TokenType.Add, currentChar.ToString(), position, position, " "));
 				position++;
 			}
 			else if (currentChar == '-')
 			{
-				tokens.Add(new Token((int)TokenType.Subtract, TokenType.Subtract, currentChar.ToString(), position, position));
+				tokens.Add(new Token((int)TokenType.Subtract, TokenType.Subtract, currentChar.ToString(), position, position, " "));
 				position++;
 			}
 			else if (currentChar == '*')
 			{
-				tokens.Add(new Token((int)TokenType.Multiply, TokenType.Multiply, currentChar.ToString(), position, position));
+				tokens.Add(new Token((int)TokenType.Multiply, TokenType.Multiply, currentChar.ToString(), position, position, " "));
 				position++;
 			}
 			else if (currentChar == '/')
 			{
-				tokens.Add(new Token((int)TokenType.Divide, TokenType.Divide, currentChar.ToString(), position, position));
+				tokens.Add(new Token((int)TokenType.Divide, TokenType.Divide, currentChar.ToString(), position, position, " "));
 				position++;
 			}
 			else if (currentChar == '{' || currentChar == '}')
 			{
-				tokens.Add(new Token((int)TokenType.CurlyBrace, TokenType.CurlyBrace, currentChar.ToString(), position, position));
+				tokens.Add(new Token((int)TokenType.CurlyBrace, TokenType.CurlyBrace, currentChar.ToString(), position, position, " "));
 				position++;
 			}
 			else if (currentChar == '\n')
 			{
-				tokens.Add(new Token((int)TokenType.NewLine, TokenType.NewLine, currentChar.ToString(), position, position));
+				tokens.Add(new Token((int)TokenType.NewLine, TokenType.NewLine, currentChar.ToString(), position, position, " "));
 				position++;
 			}
 			else if (currentChar == '\t')
 			{
-				tokens.Add(new Token((int)TokenType.Tab, TokenType.Tab, currentChar.ToString(), position, position));
+				tokens.Add(new Token((int)TokenType.Tab, TokenType.Tab, currentChar.ToString(), position, position, " "));
 				position++;
 			}
 			else if (char.IsWhiteSpace(currentChar)) // если пробел
@@ -90,7 +90,7 @@ public class LexicalAnalyzer
 			else
 			{
 				// Неизвестный символ
-				tokens.Add(new Token((int)TokenType.Unacceptable, TokenType.Unacceptable, currentChar.ToString(), position, position));
+				tokens.Add(new Token((int)TokenType.Unacceptable, TokenType.Unacceptable, currentChar.ToString(), position, position, " "));
 				position++;
 			}
 		}
@@ -125,7 +125,7 @@ public class LexicalAnalyzer
 			else
 			{
 				// Возвращаем ошибку, если следующий символ недопустим
-				return new Token((int)TokenType.Unacceptable, TokenType.Unacceptable, word, position - length, position);
+				return new Token((int)TokenType.Unacceptable, TokenType.Unacceptable, word, position - length, position, " ");
 			}
 		}
 		else if (char.IsLetter(input[position]) || input[position] == '_')
@@ -141,25 +141,25 @@ public class LexicalAnalyzer
 		else
 		{
 			// Возвращаем ошибку, если последовательность символов не является корректным идентификатором
-			return new Token((int)TokenType.Unacceptable, TokenType.Unacceptable, word, position - length, position);
+			return new Token((int)TokenType.Unacceptable, TokenType.Unacceptable, word, position - length, position, " ");
 		}
 		// После того, как прочитано ключевое слово, проверяем, соответствует ли оно известному ключевому слову
 		switch (word)
 		{
 			case "function":
-				return new Token((int)TokenType.KeywordFunction, TokenType.KeywordFunction, word, position - length, position);
+				return new Token((int)TokenType.KeywordFunction, TokenType.KeywordFunction, word, position - length, position, " ");
 			case "return":
-				return new Token((int)TokenType.KeywordReturn, TokenType.KeywordReturn, word, position - length, position);
+				return new Token((int)TokenType.KeywordReturn, TokenType.KeywordReturn, word, position - length, position, " ");
 			default:
 				// Если первый символ - "$", это может быть идентификатором аргумента
 				if (word.Length > 0 && word[0] == '$')
 				{
-					return new Token((int)TokenType.ArgumentIdentifier, TokenType.ArgumentIdentifier, word, position - length, position);
+					return new Token((int)TokenType.ArgumentIdentifier, TokenType.ArgumentIdentifier, word, position - length, position, " ");
 				}
 				else
 				{
 					// Если последовательность символов не является ключевым словом и не начинается с "$", это может быть идентификатором функции
-					return new Token((int)TokenType.FunctionIdentifier, TokenType.FunctionIdentifier, word, position - length, position);
+					return new Token((int)TokenType.FunctionIdentifier, TokenType.FunctionIdentifier, word, position - length, position, " ");
 				}
 		}
 	}
@@ -177,6 +177,6 @@ public class LexicalAnalyzer
 			length++;
 		}
 
-		return new Token((int)TokenType.Number, TokenType.Number, word, position - length, position);
+		return new Token((int)TokenType.Number, TokenType.Number, word, position - length, position, " ");
 	}
 }

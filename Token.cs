@@ -27,14 +27,15 @@ public class Token
 	public string Value { get; set; }
 	public int FirstPosition { get; set; }
 	public int SecondPosition { get; set; }
-	public Token(int codetype, TokenType type, string value, int firstposition, int secondposition)
+	public string ErrorString { get; set; }
+	public Token(int codetype, TokenType type, string value, int firstposition, int secondposition, string errorstring)
 	{
 		CodeType = codetype;
 		Type = type;
 		Value = value;
 		FirstPosition = firstposition;
 		SecondPosition = secondposition;
-
+		ErrorString = errorstring;
 	}
 
 }

@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel;
-
 public class Parser
 {
 	private List<Token> tokens;
@@ -65,37 +63,59 @@ public class Parser
 					State17(token);
 					break;
 			}
+
+			current++;
 		}
 
 		return errorTokens;
 	}
 
 	private void State1(Token token)
+
 	{
-		if (token.Type != TokenType.KeywordFunction) // если не совпадает с ожидаемым, добавить в список ошибок
+		if (token.Type == TokenType.FunctionIdentifier && (tokens[current + 1].Type == TokenType.LeftParenthesis))
+		{
+			errorTokens.Add(token); // сказать, что пропущено и что стоит
+			currentState = 4;
+			errorTokens[current].ErrorString = "Неверный фрагмент " + tokens[current].Value + ". Пропущено ключевое слово 'function'.";
+		}
+		else if (token.Type != TokenType.KeywordFunction) // если не совпадает с ожидаемым, добавить в список ошибок
 		{
 			errorTokens.Add(token);
-
-			if (tokens[current + 1].Type == TokenType.FunctionIdentifier)
+			currentState = 1;
+			
+			if ((tokens[current + 2].Type == TokenType.LeftParenthesis))
 			{
-				errorTokens.Add(tokens[current + 1]);
+				currentState = 3;
 			}
+			
 		}
-
-		currentState = 3;
-
+		else
+		{
+			currentState = 3;
+		}
 	}
-
 	private void State3(Token token)
 	{
-
 		if (token.Type != TokenType.FunctionIdentifier)
 		{
 			errorTokens.Add(token);
+			if(token.Type == TokenType.LeftParenthesis)
+			{
+				//сказать что пропущен идетификатор
+				currentState = 5;
 
+			}
+
+			if((tokens[current + 2].Type == TokenType.LeftParenthesis))
+				{
+
+			}
 		}
-
-		currentState = 4;
+		else
+		{
+			currentState = 4;
+		}
 	}
 	private void State4(Token token)
 	{

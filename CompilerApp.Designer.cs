@@ -31,6 +31,11 @@ namespace TFCLab1
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CompilerApp));
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.menuStrip = new System.Windows.Forms.MenuStrip();
 			this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.создатьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -62,10 +67,21 @@ namespace TFCLab1
 			this.видToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.изменитьШрифтToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStrip = new System.Windows.Forms.ToolStrip();
+			this.createFileBtn = new System.Windows.Forms.ToolStripButton();
+			this.openFileBtn = new System.Windows.Forms.ToolStripButton();
+			this.saveFileBtn = new System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+			this.undoBtn = new System.Windows.Forms.ToolStripButton();
+			this.redoBtn = new System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+			this.copyBtn = new System.Windows.Forms.ToolStripButton();
+			this.cutBtn = new System.Windows.Forms.ToolStripButton();
+			this.pasteBtn = new System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+			this.startBtn = new System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+			this.helpBtn = new System.Windows.Forms.ToolStripButton();
+			this.infoBtn = new System.Windows.Forms.ToolStripButton();
 			this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
 			this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
 			this.splitRichBoxContainer = new System.Windows.Forms.SplitContainer();
@@ -74,32 +90,21 @@ namespace TFCLab1
 			this.tabControlOutput = new System.Windows.Forms.TabControl();
 			this.tabPageLexer = new System.Windows.Forms.TabPage();
 			this.dataGridViewLexer = new System.Windows.Forms.DataGridView();
+			this.tabPageParser = new System.Windows.Forms.TabPage();
+			this.dataGridViewParser = new System.Windows.Forms.DataGridView();
+			this.statusStripLines = new System.Windows.Forms.StatusStrip();
+			this.toolStripStatusLabelErrors = new System.Windows.Forms.ToolStripStatusLabel();
+			this.toolStripStatusLabelClean = new System.Windows.Forms.ToolStripStatusLabel();
+			this.toolStripStatusLabelMiddle = new System.Windows.Forms.ToolStripStatusLabel();
+			this.toolStripStatusLabelRow = new System.Windows.Forms.ToolStripStatusLabel();
+			this.fontDialog = new System.Windows.Forms.FontDialog();
 			this.CodeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.LexerTypeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.LexemColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.LocationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.tabPageParser = new System.Windows.Forms.TabPage();
-			this.dataGridViewParser = new System.Windows.Forms.DataGridView();
 			this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.statusStripLines = new System.Windows.Forms.StatusStrip();
-			this.toolStripStatusLabelRow = new System.Windows.Forms.ToolStripStatusLabel();
-			this.fontDialog = new System.Windows.Forms.FontDialog();
-			this.toolStripStatusLabelErrors = new System.Windows.Forms.ToolStripStatusLabel();
-			this.toolStripStatusLabelMiddle = new System.Windows.Forms.ToolStripStatusLabel();
-			this.createFileBtn = new System.Windows.Forms.ToolStripButton();
-			this.openFileBtn = new System.Windows.Forms.ToolStripButton();
-			this.saveFileBtn = new System.Windows.Forms.ToolStripButton();
-			this.undoBtn = new System.Windows.Forms.ToolStripButton();
-			this.redoBtn = new System.Windows.Forms.ToolStripButton();
-			this.copyBtn = new System.Windows.Forms.ToolStripButton();
-			this.cutBtn = new System.Windows.Forms.ToolStripButton();
-			this.pasteBtn = new System.Windows.Forms.ToolStripButton();
-			this.startBtn = new System.Windows.Forms.ToolStripButton();
-			this.helpBtn = new System.Windows.Forms.ToolStripButton();
-			this.infoBtn = new System.Windows.Forms.ToolStripButton();
-			this.toolStripStatusLabelClean = new System.Windows.Forms.ToolStripStatusLabel();
 			this.menuStrip.SuspendLayout();
 			this.toolStrip.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitRichBoxContainer)).BeginInit();
@@ -385,12 +390,64 @@ namespace TFCLab1
 			this.toolStrip.TabIndex = 1;
 			this.toolStrip.Text = "controlPanel";
 			// 
+			// createFileBtn
+			// 
+			this.createFileBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.createFileBtn.Image = ((System.Drawing.Image)(resources.GetObject("createFileBtn.Image")));
+			this.createFileBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.createFileBtn.Name = "createFileBtn";
+			this.createFileBtn.Size = new System.Drawing.Size(36, 36);
+			this.createFileBtn.Text = "Создать";
+			this.createFileBtn.ToolTipText = "Создать";
+			this.createFileBtn.Click += new System.EventHandler(this.CreateFileBtn_Click);
+			// 
+			// openFileBtn
+			// 
+			this.openFileBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.openFileBtn.Image = ((System.Drawing.Image)(resources.GetObject("openFileBtn.Image")));
+			this.openFileBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.openFileBtn.Name = "openFileBtn";
+			this.openFileBtn.Size = new System.Drawing.Size(36, 36);
+			this.openFileBtn.Text = "Открыть";
+			this.openFileBtn.ToolTipText = "Открыть";
+			this.openFileBtn.Click += new System.EventHandler(this.OpenFileBtn_Click);
+			// 
+			// saveFileBtn
+			// 
+			this.saveFileBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.saveFileBtn.Image = ((System.Drawing.Image)(resources.GetObject("saveFileBtn.Image")));
+			this.saveFileBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.saveFileBtn.Name = "saveFileBtn";
+			this.saveFileBtn.Size = new System.Drawing.Size(36, 36);
+			this.saveFileBtn.Text = "Сохранить";
+			this.saveFileBtn.Click += new System.EventHandler(this.SaveFileBtn_Click);
+			// 
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.AutoSize = false;
 			this.toolStripSeparator1.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
 			this.toolStripSeparator1.Size = new System.Drawing.Size(6, 40);
+			// 
+			// undoBtn
+			// 
+			this.undoBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.undoBtn.Image = ((System.Drawing.Image)(resources.GetObject("undoBtn.Image")));
+			this.undoBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.undoBtn.Name = "undoBtn";
+			this.undoBtn.Size = new System.Drawing.Size(36, 36);
+			this.undoBtn.Text = "Отменить";
+			this.undoBtn.Click += new System.EventHandler(this.UndoBtn_Click);
+			// 
+			// redoBtn
+			// 
+			this.redoBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.redoBtn.Image = ((System.Drawing.Image)(resources.GetObject("redoBtn.Image")));
+			this.redoBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.redoBtn.Name = "redoBtn";
+			this.redoBtn.Size = new System.Drawing.Size(36, 36);
+			this.redoBtn.Text = "Повторить";
+			this.redoBtn.Click += new System.EventHandler(this.RedoBtn_Click);
 			// 
 			// toolStripSeparator2
 			// 
@@ -399,6 +456,36 @@ namespace TFCLab1
 			this.toolStripSeparator2.Name = "toolStripSeparator2";
 			this.toolStripSeparator2.Size = new System.Drawing.Size(6, 40);
 			// 
+			// copyBtn
+			// 
+			this.copyBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.copyBtn.Image = ((System.Drawing.Image)(resources.GetObject("copyBtn.Image")));
+			this.copyBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.copyBtn.Name = "copyBtn";
+			this.copyBtn.Size = new System.Drawing.Size(36, 36);
+			this.copyBtn.Text = "Копировать";
+			this.copyBtn.Click += new System.EventHandler(this.CopyBtn_Click);
+			// 
+			// cutBtn
+			// 
+			this.cutBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.cutBtn.Image = ((System.Drawing.Image)(resources.GetObject("cutBtn.Image")));
+			this.cutBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.cutBtn.Name = "cutBtn";
+			this.cutBtn.Size = new System.Drawing.Size(36, 36);
+			this.cutBtn.Text = "Вырезать";
+			this.cutBtn.Click += new System.EventHandler(this.CutBtn_Click);
+			// 
+			// pasteBtn
+			// 
+			this.pasteBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.pasteBtn.Image = ((System.Drawing.Image)(resources.GetObject("pasteBtn.Image")));
+			this.pasteBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.pasteBtn.Name = "pasteBtn";
+			this.pasteBtn.Size = new System.Drawing.Size(36, 36);
+			this.pasteBtn.Text = "Вставить";
+			this.pasteBtn.Click += new System.EventHandler(this.PasteBtn_Click);
+			// 
 			// toolStripSeparator4
 			// 
 			this.toolStripSeparator4.AutoSize = false;
@@ -406,12 +493,42 @@ namespace TFCLab1
 			this.toolStripSeparator4.Name = "toolStripSeparator4";
 			this.toolStripSeparator4.Size = new System.Drawing.Size(6, 40);
 			// 
+			// startBtn
+			// 
+			this.startBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.startBtn.Image = ((System.Drawing.Image)(resources.GetObject("startBtn.Image")));
+			this.startBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.startBtn.Name = "startBtn";
+			this.startBtn.Size = new System.Drawing.Size(36, 36);
+			this.startBtn.Text = "Пуск";
+			this.startBtn.Click += new System.EventHandler(this.StartBtn_Click);
+			// 
 			// toolStripSeparator3
 			// 
 			this.toolStripSeparator3.AutoSize = false;
 			this.toolStripSeparator3.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
 			this.toolStripSeparator3.Name = "toolStripSeparator3";
 			this.toolStripSeparator3.Size = new System.Drawing.Size(6, 40);
+			// 
+			// helpBtn
+			// 
+			this.helpBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.helpBtn.Image = ((System.Drawing.Image)(resources.GetObject("helpBtn.Image")));
+			this.helpBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.helpBtn.Name = "helpBtn";
+			this.helpBtn.Size = new System.Drawing.Size(36, 36);
+			this.helpBtn.Text = "Вызов справки";
+			this.helpBtn.Click += new System.EventHandler(this.HelpBtn_Click);
+			// 
+			// infoBtn
+			// 
+			this.infoBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.infoBtn.Image = ((System.Drawing.Image)(resources.GetObject("infoBtn.Image")));
+			this.infoBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.infoBtn.Name = "infoBtn";
+			this.infoBtn.Size = new System.Drawing.Size(36, 36);
+			this.infoBtn.Text = "О программе";
+			this.infoBtn.Click += new System.EventHandler(this.InfoBtn_Click);
 			// 
 			// openFileDialog
 			// 
@@ -516,6 +633,14 @@ namespace TFCLab1
 			this.dataGridViewLexer.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.dataGridViewLexer.BackgroundColor = System.Drawing.SystemColors.Control;
 			this.dataGridViewLexer.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+			dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle1.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dataGridViewLexer.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
 			this.dataGridViewLexer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridViewLexer.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CodeColumn,
@@ -526,34 +651,12 @@ namespace TFCLab1
 			this.dataGridViewLexer.Location = new System.Drawing.Point(0, 0);
 			this.dataGridViewLexer.Name = "dataGridViewLexer";
 			this.dataGridViewLexer.ReadOnly = true;
+			this.dataGridViewLexer.RowHeadersVisible = false;
 			this.dataGridViewLexer.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.dataGridViewLexer.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+			this.dataGridViewLexer.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.dataGridViewLexer.Size = new System.Drawing.Size(999, 267);
 			this.dataGridViewLexer.TabIndex = 6;
-			// 
-			// CodeColumn
-			// 
-			this.CodeColumn.HeaderText = "Условный код";
-			this.CodeColumn.Name = "CodeColumn";
-			this.CodeColumn.ReadOnly = true;
-			// 
-			// LexerTypeColumn
-			// 
-			this.LexerTypeColumn.HeaderText = "Тип лексемы";
-			this.LexerTypeColumn.Name = "LexerTypeColumn";
-			this.LexerTypeColumn.ReadOnly = true;
-			// 
-			// LexemColumn
-			// 
-			this.LexemColumn.HeaderText = "Лексема";
-			this.LexemColumn.Name = "LexemColumn";
-			this.LexemColumn.ReadOnly = true;
-			// 
-			// LocationColumn
-			// 
-			this.LocationColumn.HeaderText = "Местоположение";
-			this.LocationColumn.Name = "LocationColumn";
-			this.LocationColumn.ReadOnly = true;
 			// 
 			// tabPageParser
 			// 
@@ -574,6 +677,14 @@ namespace TFCLab1
 			this.dataGridViewParser.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.dataGridViewParser.BackgroundColor = System.Drawing.SystemColors.Control;
 			this.dataGridViewParser.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle2.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dataGridViewParser.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
 			this.dataGridViewParser.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridViewParser.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -583,28 +694,12 @@ namespace TFCLab1
 			this.dataGridViewParser.Location = new System.Drawing.Point(0, 0);
 			this.dataGridViewParser.Name = "dataGridViewParser";
 			this.dataGridViewParser.ReadOnly = true;
+			this.dataGridViewParser.RowHeadersVisible = false;
 			this.dataGridViewParser.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.dataGridViewParser.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+			this.dataGridViewParser.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.dataGridViewParser.Size = new System.Drawing.Size(999, 267);
 			this.dataGridViewParser.TabIndex = 7;
-			// 
-			// dataGridViewTextBoxColumn1
-			// 
-			this.dataGridViewTextBoxColumn1.HeaderText = "Номер ошибки";
-			this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-			this.dataGridViewTextBoxColumn1.ReadOnly = true;
-			// 
-			// dataGridViewTextBoxColumn3
-			// 
-			this.dataGridViewTextBoxColumn3.HeaderText = "Неверный фрагмент";
-			this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-			this.dataGridViewTextBoxColumn3.ReadOnly = true;
-			// 
-			// dataGridViewTextBoxColumn4
-			// 
-			this.dataGridViewTextBoxColumn4.HeaderText = "Местоположение";
-			this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-			this.dataGridViewTextBoxColumn4.ReadOnly = true;
 			// 
 			// statusStripLines
 			// 
@@ -618,146 +713,14 @@ namespace TFCLab1
 			this.statusStripLines.Size = new System.Drawing.Size(1029, 22);
 			this.statusStripLines.TabIndex = 5;
 			// 
-			// toolStripStatusLabelRow
-			// 
-			this.toolStripStatusLabelRow.BackColor = System.Drawing.SystemColors.Control;
-			this.toolStripStatusLabelRow.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-			this.toolStripStatusLabelRow.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.toolStripStatusLabelRow.Name = "toolStripStatusLabelRow";
-			this.toolStripStatusLabelRow.Size = new System.Drawing.Size(108, 17);
-			this.toolStripStatusLabelRow.Text = "Строка:   Столбец:";
-			this.toolStripStatusLabelRow.ToolTipText = "Готово";
-			// 
 			// toolStripStatusLabelErrors
 			// 
 			this.toolStripStatusLabelErrors.BackColor = System.Drawing.SystemColors.Control;
 			this.toolStripStatusLabelErrors.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-			//this.toolStripStatusLabelErrors.Image = global::TFCLab1_Copy.Properties.Resources.correct;
 			this.toolStripStatusLabelErrors.Name = "toolStripStatusLabelErrors";
-			this.toolStripStatusLabelErrors.Size = new System.Drawing.Size(158, 17);
+			this.toolStripStatusLabelErrors.Size = new System.Drawing.Size(142, 17);
 			this.toolStripStatusLabelErrors.Text = "Ошибок не обнаружено";
 			this.toolStripStatusLabelErrors.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
-			// toolStripStatusLabelMiddle
-			// 
-			this.toolStripStatusLabelMiddle.BackColor = System.Drawing.SystemColors.Control;
-			this.toolStripStatusLabelMiddle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-			this.toolStripStatusLabelMiddle.Name = "toolStripStatusLabelMiddle";
-			this.toolStripStatusLabelMiddle.Size = new System.Drawing.Size(701, 17);
-			this.toolStripStatusLabelMiddle.Spring = true;
-			this.toolStripStatusLabelMiddle.Text = "toolStripStatusLabel1";
-			// 
-			// createFileBtn
-			// 
-			this.createFileBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.createFileBtn.Image = ((System.Drawing.Image)(resources.GetObject("createFileBtn.Image")));
-			this.createFileBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.createFileBtn.Name = "createFileBtn";
-			this.createFileBtn.Size = new System.Drawing.Size(36, 36);
-			this.createFileBtn.Text = "Создать";
-			this.createFileBtn.ToolTipText = "Создать";
-			this.createFileBtn.Click += new System.EventHandler(this.CreateFileBtn_Click);
-			// 
-			// openFileBtn
-			// 
-			this.openFileBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.openFileBtn.Image = ((System.Drawing.Image)(resources.GetObject("openFileBtn.Image")));
-			this.openFileBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.openFileBtn.Name = "openFileBtn";
-			this.openFileBtn.Size = new System.Drawing.Size(36, 36);
-			this.openFileBtn.Text = "Открыть";
-			this.openFileBtn.ToolTipText = "Открыть";
-			this.openFileBtn.Click += new System.EventHandler(this.OpenFileBtn_Click);
-			// 
-			// saveFileBtn
-			// 
-			this.saveFileBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.saveFileBtn.Image = ((System.Drawing.Image)(resources.GetObject("saveFileBtn.Image")));
-			this.saveFileBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.saveFileBtn.Name = "saveFileBtn";
-			this.saveFileBtn.Size = new System.Drawing.Size(36, 36);
-			this.saveFileBtn.Text = "Сохранить";
-			this.saveFileBtn.Click += new System.EventHandler(this.SaveFileBtn_Click);
-			// 
-			// undoBtn
-			// 
-			this.undoBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.undoBtn.Image = ((System.Drawing.Image)(resources.GetObject("undoBtn.Image")));
-			this.undoBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.undoBtn.Name = "undoBtn";
-			this.undoBtn.Size = new System.Drawing.Size(36, 36);
-			this.undoBtn.Text = "Отменить";
-			this.undoBtn.Click += new System.EventHandler(this.UndoBtn_Click);
-			// 
-			// redoBtn
-			// 
-			this.redoBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.redoBtn.Image = ((System.Drawing.Image)(resources.GetObject("redoBtn.Image")));
-			this.redoBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.redoBtn.Name = "redoBtn";
-			this.redoBtn.Size = new System.Drawing.Size(36, 36);
-			this.redoBtn.Text = "Повторить";
-			this.redoBtn.Click += new System.EventHandler(this.RedoBtn_Click);
-			// 
-			// copyBtn
-			// 
-			this.copyBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.copyBtn.Image = ((System.Drawing.Image)(resources.GetObject("copyBtn.Image")));
-			this.copyBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.copyBtn.Name = "copyBtn";
-			this.copyBtn.Size = new System.Drawing.Size(36, 36);
-			this.copyBtn.Text = "Копировать";
-			this.copyBtn.Click += new System.EventHandler(this.CopyBtn_Click);
-			// 
-			// cutBtn
-			// 
-			this.cutBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.cutBtn.Image = ((System.Drawing.Image)(resources.GetObject("cutBtn.Image")));
-			this.cutBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.cutBtn.Name = "cutBtn";
-			this.cutBtn.Size = new System.Drawing.Size(36, 36);
-			this.cutBtn.Text = "Вырезать";
-			this.cutBtn.Click += new System.EventHandler(this.CutBtn_Click);
-			// 
-			// pasteBtn
-			// 
-			this.pasteBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.pasteBtn.Image = ((System.Drawing.Image)(resources.GetObject("pasteBtn.Image")));
-			this.pasteBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.pasteBtn.Name = "pasteBtn";
-			this.pasteBtn.Size = new System.Drawing.Size(36, 36);
-			this.pasteBtn.Text = "Вставить";
-			this.pasteBtn.Click += new System.EventHandler(this.PasteBtn_Click);
-			// 
-			// startBtn
-			// 
-			this.startBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.startBtn.Image = ((System.Drawing.Image)(resources.GetObject("startBtn.Image")));
-			this.startBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.startBtn.Name = "startBtn";
-			this.startBtn.Size = new System.Drawing.Size(36, 36);
-			this.startBtn.Text = "Пуск";
-			this.startBtn.Click += new System.EventHandler(this.StartBtn_Click);
-			// 
-			// helpBtn
-			// 
-			this.helpBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.helpBtn.Image = ((System.Drawing.Image)(resources.GetObject("helpBtn.Image")));
-			this.helpBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.helpBtn.Name = "helpBtn";
-			this.helpBtn.Size = new System.Drawing.Size(36, 36);
-			this.helpBtn.Text = "Вызов справки";
-			this.helpBtn.Click += new System.EventHandler(this.HelpBtn_Click);
-			// 
-			// infoBtn
-			// 
-			this.infoBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.infoBtn.Image = ((System.Drawing.Image)(resources.GetObject("infoBtn.Image")));
-			this.infoBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.infoBtn.Name = "infoBtn";
-			this.infoBtn.Size = new System.Drawing.Size(36, 36);
-			this.infoBtn.Text = "О программе";
-			this.infoBtn.Click += new System.EventHandler(this.InfoBtn_Click);
 			// 
 			// toolStripStatusLabelClean
 			// 
@@ -768,6 +731,81 @@ namespace TFCLab1
 			this.toolStripStatusLabelClean.Size = new System.Drawing.Size(0, 17);
 			this.toolStripStatusLabelClean.Text = "toolStripStatusLabel1";
 			this.toolStripStatusLabelClean.Click += new System.EventHandler(this.toolStripStatusLabelClean_Click);
+			// 
+			// toolStripStatusLabelMiddle
+			// 
+			this.toolStripStatusLabelMiddle.BackColor = System.Drawing.SystemColors.Control;
+			this.toolStripStatusLabelMiddle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+			this.toolStripStatusLabelMiddle.Name = "toolStripStatusLabelMiddle";
+			this.toolStripStatusLabelMiddle.Size = new System.Drawing.Size(764, 17);
+			this.toolStripStatusLabelMiddle.Spring = true;
+			this.toolStripStatusLabelMiddle.Text = "toolStripStatusLabel1";
+			// 
+			// toolStripStatusLabelRow
+			// 
+			this.toolStripStatusLabelRow.BackColor = System.Drawing.SystemColors.Control;
+			this.toolStripStatusLabelRow.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+			this.toolStripStatusLabelRow.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+			this.toolStripStatusLabelRow.Name = "toolStripStatusLabelRow";
+			this.toolStripStatusLabelRow.Size = new System.Drawing.Size(108, 17);
+			this.toolStripStatusLabelRow.Text = "Строка:   Столбец:";
+			this.toolStripStatusLabelRow.ToolTipText = "Готово";
+			// 
+			// CodeColumn
+			// 
+			this.CodeColumn.FillWeight = 30.45685F;
+			this.CodeColumn.HeaderText = "Условный код";
+			this.CodeColumn.Name = "CodeColumn";
+			this.CodeColumn.ReadOnly = true;
+			// 
+			// LexerTypeColumn
+			// 
+			this.LexerTypeColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.LexerTypeColumn.FillWeight = 151.6004F;
+			this.LexerTypeColumn.HeaderText = "Тип лексемы";
+			this.LexerTypeColumn.Name = "LexerTypeColumn";
+			this.LexerTypeColumn.ReadOnly = true;
+			// 
+			// LexemColumn
+			// 
+			this.LexemColumn.FillWeight = 151.6004F;
+			this.LexemColumn.HeaderText = "Лексема";
+			this.LexemColumn.Name = "LexemColumn";
+			this.LexemColumn.ReadOnly = true;
+			// 
+			// LocationColumn
+			// 
+			this.LocationColumn.FillWeight = 66.34232F;
+			this.LocationColumn.HeaderText = "Местоположение";
+			this.LocationColumn.Name = "LocationColumn";
+			this.LocationColumn.ReadOnly = true;
+			// 
+			// dataGridViewTextBoxColumn1
+			// 
+			dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+			this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle3;
+			this.dataGridViewTextBoxColumn1.FillWeight = 16.31657F;
+			this.dataGridViewTextBoxColumn1.HeaderText = "№";
+			this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+			this.dataGridViewTextBoxColumn1.ReadOnly = true;
+			// 
+			// dataGridViewTextBoxColumn3
+			// 
+			dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle4;
+			this.dataGridViewTextBoxColumn3.FillWeight = 237.9982F;
+			this.dataGridViewTextBoxColumn3.HeaderText = "Неверный фрагмент";
+			this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+			this.dataGridViewTextBoxColumn3.ReadOnly = true;
+			// 
+			// dataGridViewTextBoxColumn4
+			// 
+			dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+			this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle5;
+			this.dataGridViewTextBoxColumn4.FillWeight = 45.68528F;
+			this.dataGridViewTextBoxColumn4.HeaderText = "Местоположение";
+			this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+			this.dataGridViewTextBoxColumn4.ReadOnly = true;
 			// 
 			// CompilerApp
 			// 
@@ -858,10 +896,6 @@ namespace TFCLab1
 		private RichTextBox LineNumberTextBox;
 		private StatusStrip statusStripLines;
 		private DataGridView dataGridViewLexer;
-		private DataGridViewTextBoxColumn CodeColumn;
-		private DataGridViewTextBoxColumn LexerTypeColumn;
-		private DataGridViewTextBoxColumn LexemColumn;
-		private DataGridViewTextBoxColumn LocationColumn;
 		private FontDialog fontDialog;
 		private ToolStripMenuItem видToolStripMenuItem;
 		private ToolStripMenuItem изменитьШрифтToolStripMenuItem;
@@ -869,13 +903,17 @@ namespace TFCLab1
 		private TabPage tabPageLexer;
 		private TabPage tabPageParser;
 		private DataGridView dataGridViewParser;
-		private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-		private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-		private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
 		private ToolStripStatusLabel toolStripStatusLabelErrors;
 		private ToolStripStatusLabel toolStripStatusLabelMiddle;
 		private ToolStripStatusLabel toolStripStatusLabelRow;
 		private ToolStripStatusLabel toolStripStatusLabelClean;
+		private DataGridViewTextBoxColumn CodeColumn;
+		private DataGridViewTextBoxColumn LexerTypeColumn;
+		private DataGridViewTextBoxColumn LexemColumn;
+		private DataGridViewTextBoxColumn LocationColumn;
+		private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+		private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+		private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
 	}
 }
 
