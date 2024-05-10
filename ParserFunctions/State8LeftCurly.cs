@@ -1,11 +1,11 @@
-﻿public partial class SecParser
+﻿public partial class Parser
 {
 	private void StateLeftCurly(string input, ref int position)
 	{
 		int keywordStartPos = position; // Запоминаем начальную позицию ключевого слова
 		if (position >= input.Length)
 		{
-			errors.Add(new ParserError("Входная строка закончилась раньше, чем ожидалось 8", position, position));
+			errors.Add(new ParserError("Входная строка закончилась раньше, чем ожидалось 8", position, position, ErrorType.UnfinishedExpression));
 			return;
 		}
 		// Пропускаем пробелы до начала ключевого слова
@@ -52,7 +52,7 @@
 		// Если левая скобка не была найдена, добавляем сообщение об ошибке
 		if (!IsLeftPartofCurlyMet)
 		{
-			errors.Add(new ParserError("Не найдена левая фигурная скобка", keywordStartPos, position - 1));
+			errors.Add(new ParserError("Не найдена левая фигурная скобка", keywordStartPos, position - 1, ErrorType.UnfinishedExpression));
 		}
 
 

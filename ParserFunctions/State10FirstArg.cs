@@ -1,4 +1,4 @@
-﻿public partial class SecParser
+﻿public partial class Parser
 {
 	private void StateFirstArg(string input, ref int position)
 	{
@@ -6,12 +6,12 @@
 
 		if (position >= input.Length)
 		{
-			//errors.Add(new ParserError("Входная строка закончилась раньше, чем ожидалось", position, position));
+			errors.Add(new ParserError("Входная строка закончилась раньше, чем ожидалось 10", position, position));
 			return;
 		}
 
 		// Пропускаем пробелы до начала ключевого слова
-		while (position < input.Length && (char.IsWhiteSpace(input[position]) || input[position] == '\n'))
+		while (position < input.Length && char.IsWhiteSpace(input[position]))
 		{
 			position++; // Продвигаем позицию на следующий символ
 		}
@@ -60,16 +60,22 @@
 			}
 
 			position++;
+
+			// Если цикл завершился из-за пробела, но символ '$' не был считан, продолжаем цикл
+			if (position < input.Length && char.IsWhiteSpace(input[position]) && !IsNotFirstSymbol)
+			{
+				position++; // Продвигаем позицию на следующий символ
+			}
 		}
-		if (!IsNotFirstSymbol && !IsNotMissingSymbol)
+		if (!IsNotMissingSymbol)
 		{
-			errors.Add(error);
+			errors.Add(new ParserError("Ожидалась переменная", keywordStartPos + 1, position + 1, ErrorType.UnfinishedExpression));
 		}
 
-		if (!IsNotMissingSymbol && IsNotFirstSymbol)
-		{
-			errors.Add(new ParserError("Недописана переменная", keywordStartPos, position));
-		}
+		//if (!IsNotMissingSymbol && IsNotFirstSymbol)
+		//{
+		//	errors.Add(new ParserError("Недописана переменная", keywordStartPos, position));
+		//}
 
 	}
 }

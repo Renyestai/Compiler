@@ -239,23 +239,18 @@ namespace TFCLab1
 			List<Token> tokens = lexer.Tokenize();
 
 			// Синтаксический анализ
-			Parser parser = new Parser(tokens);
-			List<Token> errorTokens = parser.Parse();
-			foreach (Token token in tokens)
-			{
-				dataGridViewLexer.Rows.Add(token.CodeType, token.Type, token.Value, token.FirstPosition + " - " + token.SecondPosition);
-			}
-
+			Parser parser = new Parser(inputRichBox.Text);
+			List<ParserError> errorParser = parser.Parse();
 			int numOfErrors = 0;
-			if (errorTokens.Any()) // если ошибки есть
+			if (errorParser.Any()) // если ошибки есть
 			{
 				toolStripStatusLabelErrors.Image = Image.FromFile(@"Resources\error.png");
-				toolStripStatusLabelErrors.Text = errorTokens.Count.ToString();
+				toolStripStatusLabelErrors.Text = errorParser.Count.ToString();
 				toolStripStatusLabelClean.Image = Image.FromFile(@"Resources\mop.png");
 
-				foreach (Token token in errorTokens)
+				foreach (ParserError error in errorParser)
 				{
-					dataGridViewParser.Rows.Add(++numOfErrors, token.ErrorString, token.FirstPosition + " - " + token.SecondPosition);
+					dataGridViewParser.Rows.Add(++numOfErrors, error.Message, error.Position);
 				}
 
 			}
@@ -265,15 +260,6 @@ namespace TFCLab1
 				toolStripStatusLabelErrors.Text = "Ошибок не обнаружено";
 				toolStripStatusLabelClean.Image = null;
 			}
-
-			//StringHelper stringHelper = new StringHelper(inputRichBox.Text);
-			//SecParser secparser = new SecParser(inputRichBox.Text);
-			//List<ParserError> errorParser = secparser.Parse();
-
-			//foreach (ParserError error in errorParser)
-			//{
-			//	dataGridViewParser.Rows.Add(++numOfErrors, error.Message, error.Position);
-			//}
 
 		}
 	}

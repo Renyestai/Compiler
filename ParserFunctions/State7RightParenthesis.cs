@@ -1,4 +1,4 @@
-﻿public partial class SecParser
+﻿public partial class Parser
 {
 	private void StateRightPar(string input, ref int position)
 	{
@@ -6,7 +6,7 @@
 		bool RightParMet = false;
 		if (position >= input.Length)
 		{
-			errors.Add(new ParserError("Входная строка закончилась раньше, чем ожидалось 7", position, position));
+			errors.Add(new ParserError("Входная строка закончилась раньше, чем ожидалось 7", position, position, ErrorType.UnfinishedExpression));
 			return;
 		}
 		// Пропускаем пробелы до начала ключевого слова
@@ -63,7 +63,7 @@
 
 		if (!RightParMet)
 		{
-			errors.Add(new ParserError("Не найдена правая скобка", keywordStartPos, keywordStartPos + 1));
+			errors.Add(new ParserError("Не найдена правая скобка", keywordStartPos, keywordStartPos + 1, ErrorType.UnfinishedExpression));
 		}
 
 	}

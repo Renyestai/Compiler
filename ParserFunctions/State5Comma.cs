@@ -1,10 +1,10 @@
-﻿public partial class SecParser
+﻿public partial class Parser
 {
 	private void StateComma(string input, ref int position)
 	{
 		if (position >= input.Length)
 		{
-			errors.Add(new ParserError("Входная строка закончилась раньше, чем ожидалось 5", position, position));
+			errors.Add(new ParserError("Входная строка закончилась раньше, чем ожидалось 5", position, position, ErrorType.UnfinishedExpression));
 			return;
 		}
 		int keywordStartPos = position; // Запоминаем начальную позицию ключевого слова
@@ -52,7 +52,7 @@
 
 		if (!CommaMet)
 		{
-			errors.Add(new ParserError("Не найдена запятая", keywordStartPos, position));
+			errors.Add(new ParserError("Не найдена запятая", keywordStartPos, position, ErrorType.UnfinishedExpression));
 		}
 
 

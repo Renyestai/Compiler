@@ -1,4 +1,4 @@
-﻿public partial class SecParser
+﻿public partial class Parser
 {
 	private void StateFirstArgID(string input, ref int position) //5
 	{
@@ -6,7 +6,7 @@
 
 		if (position >= input.Length)
 		{
-			errors.Add(new ParserError("Входная строка закончилась раньше, чем ожидалось 4", position, position));
+			errors.Add(new ParserError("Входная строка закончилась раньше, чем ожидалось 4", position, position, ErrorType.UnfinishedExpression));
 			return;
 		}
 
@@ -70,7 +70,7 @@
 
 		if (!IsNotMissingSymbol && IsNotFirstSymbol)
 		{
-			errors.Add(new ParserError("Незаконченный аргумент функции", keywordStartPos, position));
+			errors.Add(new ParserError("Незаконченный аргумент функции", keywordStartPos, position, ErrorType.UnfinishedExpression));
 		}
 
 		

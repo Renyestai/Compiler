@@ -1,11 +1,11 @@
-﻿public partial class SecParser
+﻿public partial class Parser
 	{
 		private void StateLeftPar(string input, ref int position) //4
 		{
 			int keywordStartPos = position; // Запоминаем начальную позицию ключевого слова
 			if (position >= input.Length)
 			{
-			errors.Add(new ParserError("Входная строка закончилась раньше, чем ожидалось 3", position, position));
+			errors.Add(new ParserError("Входная строка закончилась раньше, чем ожидалось 3", position, position, ErrorType.UnfinishedExpression));
 			return;
 			}
 
@@ -51,7 +51,7 @@
 
 			if (!IsLeftPartofParMet)
 			{
-				errors.Add(new ParserError("Не найдена левая скобка", keywordStartPos, position));
+				errors.Add(new ParserError("Не найдена левая скобка", keywordStartPos, position, ErrorType.UnfinishedExpression));
 			}
 
 		}

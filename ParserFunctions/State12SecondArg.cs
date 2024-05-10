@@ -1,12 +1,13 @@
 ﻿public partial class Parser
 {
-	private void StateSecondArgID(string input, ref int position) //5
+	private void StateSecondArg(string input, ref int position)
 	{
 		int keywordStartPos = position; // Запоминаем начальную позицию ключевого слова
-		char currentSymbol;
+
+
 		if (position >= input.Length)
 		{
-			errors.Add(new ParserError("Входная строка закончилась раньше, чем ожидалось 6", position, position, ErrorType.UnfinishedExpression));
+			errors.Add(new ParserError("Входная строка закончилась раньше, чем ожидалось 11", position, position, ErrorType.UnfinishedExpression));
 			return;
 		}
 
@@ -18,9 +19,10 @@
 
 		bool IsNotFirstSymbol = false;
 		bool IsNotMissingSymbol = false;
-		ParserError error = new ParserError("Ожидался аргумент функции", keywordStartPos + 1, position + 1);
+		char currentSymbol;
+		ParserError error = new ParserError("Ожидалась переменная", keywordStartPos + 1, position + 1);
 
-		while (position < input.Length && (!char.IsWhiteSpace(input[position]) && input[position] != ',' && input[position] != ')'))
+		while (position < input.Length && (!char.IsWhiteSpace(input[position]) && input[position] != ';' && input[position] != '\n'))
 		{
 			if (position >= input.Length)
 			{
@@ -37,20 +39,20 @@
 				IsNotFirstSymbol = true;
 				if (error.Value != string.Empty)
 					errors.Add(error);
-				error = new ParserError("Ожидался аргумент функции", position, position);
+				error = new ParserError("Ожидалась переменная", position, position);
 			}
 			else if (IsNotFirstSymbol && !IsNotMissingSymbol && (char.IsLetter(currentSymbol) || currentSymbol == '_'))
 			{
 				IsNotMissingSymbol = true;
 				if (error.Value != string.Empty)
 					errors.Add(error);
-				error = new ParserError("Ожидался аргумент функции", position, position);
+				error = new ParserError("Ожидалась переменная", position, position);
 			}
 			else if (IsNotFirstSymbol && (char.IsLetter(currentSymbol) || char.IsDigit(currentSymbol) || currentSymbol == '_'))
 			{
 				if (error.Value != string.Empty)
 					errors.Add(error);
-				error = new ParserError("Ожидался аргумент функции", position, position);
+				error = new ParserError("Ожидалась переменная", position, position);
 			}
 			else
 			{
@@ -59,17 +61,22 @@
 			}
 
 			position++;
-		}
 
-		if (!IsNotFirstSymbol && !IsNotMissingSymbol)// то ли не видит то ли что
+			// Если цикл завершился из-за пробела, но символ '$' не был считан, продолжаем цикл
+			if (position < input.Length && char.IsWhiteSpace(input[position]) && !IsNotFirstSymbol)
+			{
+				position++; // Продвигаем позицию на следующий символ
+			}
+		}
+		if (!IsNotMissingSymbol)
 		{
-			errors.Add(error);
+			errors.Add(new ParserError("Ожидалась переменная", keywordStartPos + 1, position + 1, ErrorType.UnfinishedExpression));
 		}
 
+		//if (!IsNotMissingSymbol && IsNotFirstSymbol)
+		//{
+		//	errors.Add(new ParserError("Недописана переменная", keywordStartPos, position));
+		//}
 
-		if (!IsNotMissingSymbol && IsNotFirstSymbol)
-		{
-			errors.Add(new ParserError("Незаконченный аргумент функции", keywordStartPos, position, ErrorType.UnfinishedExpression));
-		}
 	}
 }

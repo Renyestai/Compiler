@@ -1,4 +1,4 @@
-﻿	public partial class SecParser
+﻿	public partial class Parser
 	{
 	private void StateFunctionID(string input, ref int position) //3
 	{
@@ -8,7 +8,7 @@
 		char currentSymbol;
 		if (position >= input.Length)
 		{
-			errors.Add(new ParserError("Входная строка закончилась раньше, чем ожидалось 2", position, position));
+			errors.Add(new ParserError("Входная строка закончилась раньше, чем ожидалось 2", position, position, ErrorType.UnfinishedExpression));
 			return;
 		}
 
@@ -58,7 +58,7 @@
 
 		if (!FuncIDMet)
 		{
-			errors.Add(new ParserError("Не найден идентификатор функции", keywordStartPos, position));
+			errors.Add(new ParserError("Не найден идентификатор функции", keywordStartPos, position, ErrorType.UnfinishedExpression));
 		}
 	}
 }

@@ -1,4 +1,4 @@
-﻿public partial class SecParser
+﻿public partial class Parser
 	{
 	private void StateKeywordFunction(string input, ref int position)
 		{

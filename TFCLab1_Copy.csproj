@@ -66,7 +66,16 @@
     <Compile Include="LexicalAnalyzer.cs" />
     <Compile Include="Parser.cs" />
     <Compile Include="ParserErrors.cs" />
-    <Compile Include="ParserTwo.cs" />
+    <Compile Include="ParserFunctions\State10FirstArg.cs" />
+    <Compile Include="ParserFunctions\State1KeywordFunction.cs" />
+    <Compile Include="ParserFunctions\State2FunctionID.cs" />
+    <Compile Include="ParserFunctions\State3LeftParenthesis.cs" />
+    <Compile Include="ParserFunctions\State4FirstArgumentID.cs" />
+    <Compile Include="ParserFunctions\State5Comma.cs" />
+    <Compile Include="ParserFunctions\State6SecondArgumentID.cs" />
+    <Compile Include="ParserFunctions\State7RightParenthesis.cs" />
+    <Compile Include="ParserFunctions\State8LeftCurly.cs" />
+    <Compile Include="ParserFunctions\State9KeywordReturn.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringHelper.cs" />
