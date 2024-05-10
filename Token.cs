@@ -17,6 +17,7 @@
 	NewLine,
 	Tab,
 	Number, // число
+	Operator,
 	Unacceptable    // недопустимый символ
 }
 

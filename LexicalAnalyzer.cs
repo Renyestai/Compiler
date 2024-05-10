@@ -50,22 +50,22 @@ public class LexicalAnalyzer
 			}
 			else if (currentChar == '+')
 			{
-				tokens.Add(new Token((int)TokenType.Add, TokenType.Add, currentChar.ToString(), position, position, " "));
+				tokens.Add(new Token((int)TokenType.Operator, TokenType.Operator, currentChar.ToString(), position, position, " "));
 				position++;
 			}
 			else if (currentChar == '-')
 			{
-				tokens.Add(new Token((int)TokenType.Subtract, TokenType.Subtract, currentChar.ToString(), position, position, " "));
+				tokens.Add(new Token((int)TokenType.Operator, TokenType.Operator, currentChar.ToString(), position, position, " "));
 				position++;
 			}
 			else if (currentChar == '*')
 			{
-				tokens.Add(new Token((int)TokenType.Multiply, TokenType.Multiply, currentChar.ToString(), position, position, " "));
+				tokens.Add(new Token((int)TokenType.Operator, TokenType.Operator, currentChar.ToString(), position, position, " "));
 				position++;
 			}
 			else if (currentChar == '/')
 			{
-				tokens.Add(new Token((int)TokenType.Divide, TokenType.Divide, currentChar.ToString(), position, position, " "));
+				tokens.Add(new Token((int)TokenType.Operator, TokenType.Operator, currentChar.ToString(), position, position, " "));
 				position++;
 			}
 			else if (currentChar == '{' || currentChar == '}')
@@ -166,17 +166,34 @@ public class LexicalAnalyzer
 
 	private Token ScanNumber()
 	{
-		string word = ""; // Инициализация строки для хранения текущего слова
+		string number = ""; // Инициализация строки для хранения числа
 		int length = 0;
 
-		while(position < input.Length && char.IsDigit(input[position]))
-
+		// Сначала сканируем последовательность цифр и десятичных точек
+		while (position < input.Length && (char.IsDigit(input[position]) || input[position] == '.'))
 		{
-			word += input[position]; // Добавляем текущий символ к строке
+			number += input[position]; // Добавляем текущий символ к числу
 			position++; // Переходим к следующему символу
 			length++;
 		}
 
-		return new Token((int)TokenType.Number, TokenType.Number, word, position - length, position, " ");
+		// Затем продолжаем сканировать символы до,знака новой строки или другого неподходящего символа
+		while (position < input.Length && input[position] != '\n' && char.IsWhiteSpace(input[position]))
+		{
+			number += input[position]; // Добавляем текущий символ к числу
+			position++; // Переходим к следующему символу
+			length++;
+		}
+
+		// Проверяем, является ли сканированная строка числом
+		if (double.TryParse(number, out _))
+		{
+			return new Token((int)TokenType.Number, TokenType.Number, number, position - length, position, " ");
+		}
+		else
+		{
+			// Если строка не является числом, то считаем ее недопустимой
+			return new Token((int)TokenType.Unacceptable, TokenType.Unacceptable, number, position - length, position, " ");
+		}
 	}
 }

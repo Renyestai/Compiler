@@ -233,7 +233,7 @@ namespace TFCLab1
 			dataGridViewLexer.Rows.Clear();
 			dataGridViewParser.Rows.Clear();
 
-			int numOfErrors = 0;
+			
 			// Лексический анализ
 			LexicalAnalyzer lexer = new LexicalAnalyzer(inputRichBox.Text);
 			List<Token> tokens = lexer.Tokenize();
@@ -246,7 +246,7 @@ namespace TFCLab1
 				dataGridViewLexer.Rows.Add(token.CodeType, token.Type, token.Value, token.FirstPosition + " - " + token.SecondPosition);
 			}
 
-
+			int numOfErrors = 0;
 			if (errorTokens.Any()) // если ошибки есть
 			{
 				toolStripStatusLabelErrors.Image = Image.FromFile(@"Resources\error.png");
@@ -255,7 +255,7 @@ namespace TFCLab1
 
 				foreach (Token token in errorTokens)
 				{
-					dataGridViewParser.Rows.Add(++numOfErrors, "Неверный фрагмент: " + token.Value + ". ", token.FirstPosition + " - " + token.SecondPosition);
+					dataGridViewParser.Rows.Add(++numOfErrors, token.ErrorString, token.FirstPosition + " - " + token.SecondPosition);
 				}
 
 			}
@@ -265,6 +265,15 @@ namespace TFCLab1
 				toolStripStatusLabelErrors.Text = "Ошибок не обнаружено";
 				toolStripStatusLabelClean.Image = null;
 			}
+
+			//StringHelper stringHelper = new StringHelper(inputRichBox.Text);
+			//SecParser secparser = new SecParser(inputRichBox.Text);
+			//List<ParserError> errorParser = secparser.Parse();
+
+			//foreach (ParserError error in errorParser)
+			//{
+			//	dataGridViewParser.Rows.Add(++numOfErrors, error.Message, error.Position);
+			//}
 
 		}
 	}

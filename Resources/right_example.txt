@@ -1,4 +1,4 @@
 function Fun($a,$b)
 {
-return $a;
+return $a+$b;
 }
