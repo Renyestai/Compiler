@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+
 public partial class Parser
 {
 	private string input;
@@ -37,5 +39,5 @@ public partial class Parser
 
 		return errors;
 	}
-	
+
 }

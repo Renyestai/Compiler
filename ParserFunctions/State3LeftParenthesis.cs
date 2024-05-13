@@ -10,7 +10,7 @@
 			}
 
 		// Пропускаем пробелы до начала ключевого слова
-		while (position < input.Length && (char.IsWhiteSpace(input[position]) || input[position] == '\n'))
+		while (position < input.Length && char.IsWhiteSpace(input[position]))
 			{
 				position++; // Продвигаем позицию на следующий символ
 			}
@@ -18,7 +18,7 @@
 
 			ParserError error = new ParserError("Ожидалась левая скобка", keywordStartPos + 1, position + 1);
 
-			while (position < input.Length && (!char.IsWhiteSpace(input[position]) && input[position] != '$' && !char.IsLetter(input[position]) && !char.IsDigit(input[position]) && input[position] != '_'))
+			while (position < input.Length && (input[position] != '\n' && input[position] != '$' && !char.IsLetter(input[position])  && input[position] != '_'))
 			{
 
 				if (position >= input.Length)

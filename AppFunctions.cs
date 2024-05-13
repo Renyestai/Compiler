@@ -205,7 +205,6 @@ namespace TFCLab1
 
 		public static void HighlightKeywords(RichTextBox inputRichBox)
 		{
-			//await Task.Delay(500);
 			int originalSelectionStart = inputRichBox.SelectionStart;
 			int originalSelectionLength = inputRichBox.SelectionLength;
 			// Определяем ключевые слова PHP

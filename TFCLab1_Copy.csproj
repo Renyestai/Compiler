@@ -67,6 +67,10 @@
     <Compile Include="Parser.cs" />
     <Compile Include="ParserErrors.cs" />
     <Compile Include="ParserFunctions\State10FirstArg.cs" />
+    <Compile Include="ParserFunctions\State11ArifOperator.cs" />
+    <Compile Include="ParserFunctions\State12SecondArg.cs" />
+    <Compile Include="ParserFunctions\State13Semicolon.cs" />
+    <Compile Include="ParserFunctions\State14RightCurly.cs" />
     <Compile Include="ParserFunctions\State1KeywordFunction.cs" />
     <Compile Include="ParserFunctions\State2FunctionID.cs" />
     <Compile Include="ParserFunctions\State3LeftParenthesis.cs" />

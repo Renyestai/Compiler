@@ -1,4 +1,5 @@
-﻿	public partial class Parser
+﻿using System.Linq;
+public partial class Parser
 	{
 	private void StateFunctionID(string input, ref int position) //3
 	{
@@ -13,14 +14,14 @@
 		}
 
 		// Пропускаем пробелы до начала ключевого слова
-		while (position < input.Length && (char.IsWhiteSpace(input[position]) || input[position] == '\n'))
+		while (position < input.Length && char.IsWhiteSpace(input[position]))
 		{
 			position++; // Продвигаем позицию на следующий символ
 		}
 
 		ParserError error = new ParserError("Ожидался идентификатор функции", keywordStartPos + 1, position + 1);
 
-		while (position < input.Length && !char.IsWhiteSpace(input[position]) && input[position] != '(' && input[position] != '$' && input[position] != ',') // $ мб убрать
+		while (position < input.Length && input[position] != '(' && input[position] != '$') // $ мб убрать
 		{
 			if (position >= input.Length)
 			{
@@ -39,13 +40,13 @@
 				IsNotFirstSymbol = true;
 				if (error.Value != string.Empty)
 					errors.Add(error);
-				error = new ParserError("Ожидался идентификатор функции", position, position);
+				error = new ParserError("Ожидался идентификатор функции", position, position, ErrorType.UnfinishedExpression);
 			}
 			else if ((char.IsLetter(currentSymbol) || char.IsDigit(currentSymbol) || currentSymbol == '_') && IsNotFirstSymbol)
 			{
 				if (error.Value != string.Empty)
 					errors.Add(error);
-				error = new ParserError("Ожидался идентификатор функции", position, position);
+				error = new ParserError("Ожидался идентификатор функции", position, position, ErrorType.UnfinishedExpression);
 			}
 			else
 			{
@@ -61,5 +62,6 @@
 			errors.Add(new ParserError("Не найден идентификатор функции", keywordStartPos, position, ErrorType.UnfinishedExpression));
 		}
 	}
+
 }
 

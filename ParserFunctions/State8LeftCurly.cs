@@ -18,7 +18,7 @@
 
 		ParserError error = new ParserError("Ожидалась левая фигурная скобка", keywordStartPos + 1, position + 1);
 
-		while (position < input.Length && !char.IsWhiteSpace(input[position]) && input[position] != 'r') //  input[position]!=' '
+		while (position < input.Length && !char.IsLetter(input[position]) && !char.IsDigit(input[position])) //  input[position]!=' '
 		{
 
 			if (position >= input.Length)
