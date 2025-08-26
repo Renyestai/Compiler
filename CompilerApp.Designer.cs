@@ -31,11 +31,10 @@ namespace TFCLab1
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CompilerApp));
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.menuStrip = new System.Windows.Forms.MenuStrip();
 			this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.создатьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -90,21 +89,21 @@ namespace TFCLab1
 			this.tabControlOutput = new System.Windows.Forms.TabControl();
 			this.tabPageLexer = new System.Windows.Forms.TabPage();
 			this.dataGridViewLexer = new System.Windows.Forms.DataGridView();
+			this.CodeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.LexerTypeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.LexemColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.LocationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.tabPageParser = new System.Windows.Forms.TabPage();
 			this.dataGridViewParser = new System.Windows.Forms.DataGridView();
+			this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.statusStripLines = new System.Windows.Forms.StatusStrip();
 			this.toolStripStatusLabelErrors = new System.Windows.Forms.ToolStripStatusLabel();
 			this.toolStripStatusLabelClean = new System.Windows.Forms.ToolStripStatusLabel();
 			this.toolStripStatusLabelMiddle = new System.Windows.Forms.ToolStripStatusLabel();
 			this.toolStripStatusLabelRow = new System.Windows.Forms.ToolStripStatusLabel();
 			this.fontDialog = new System.Windows.Forms.FontDialog();
-			this.CodeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.LexerTypeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.LexemColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.LocationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.menuStrip.SuspendLayout();
 			this.toolStrip.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitRichBoxContainer)).BeginInit();
@@ -150,35 +149,35 @@ namespace TFCLab1
 			// создатьToolStripMenuItem
 			// 
 			this.создатьToolStripMenuItem.Name = "создатьToolStripMenuItem";
-			this.создатьToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+			this.создатьToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
 			this.создатьToolStripMenuItem.Text = "Создать";
 			this.создатьToolStripMenuItem.Click += new System.EventHandler(this.СоздатьToolStripMenuItem_Click);
 			// 
 			// открытьToolStripMenuItem
 			// 
 			this.открытьToolStripMenuItem.Name = "открытьToolStripMenuItem";
-			this.открытьToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+			this.открытьToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
 			this.открытьToolStripMenuItem.Text = "Открыть";
 			this.открытьToolStripMenuItem.Click += new System.EventHandler(this.ОткрытьToolStripMenuItem_Click);
 			// 
 			// сохранитьToolStripMenuItem
 			// 
 			this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
-			this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+			this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
 			this.сохранитьToolStripMenuItem.Text = "Сохранить";
 			this.сохранитьToolStripMenuItem.Click += new System.EventHandler(this.СохранитьToolStripMenuItem_Click);
 			// 
 			// сохранитьКакToolStripMenuItem
 			// 
 			this.сохранитьКакToolStripMenuItem.Name = "сохранитьКакToolStripMenuItem";
-			this.сохранитьКакToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+			this.сохранитьКакToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
 			this.сохранитьКакToolStripMenuItem.Text = "Сохранить как...";
 			this.сохранитьКакToolStripMenuItem.Click += new System.EventHandler(this.СохранитьКакToolStripMenuItem_Click);
 			// 
 			// выходToolStripMenuItem
 			// 
 			this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
-			this.выходToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+			this.выходToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
 			this.выходToolStripMenuItem.Text = "Выход";
 			this.выходToolStripMenuItem.Click += new System.EventHandler(this.ВыходToolStripMenuItem_Click);
 			// 
@@ -257,7 +256,7 @@ namespace TFCLab1
             this.списоклитературыtoolStripMenuItem,
             this.исходныйкодпрограммыtoolStripMenuItem});
 			this.текстToolStripMenuItem.Name = "текстToolStripMenuItem";
-			this.текстToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+			this.текстToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
 			this.текстToolStripMenuItem.Text = "Текст";
 			// 
 			// постановкаЗадачиToolStripMenuItem
@@ -633,14 +632,14 @@ namespace TFCLab1
 			this.dataGridViewLexer.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.dataGridViewLexer.BackgroundColor = System.Drawing.SystemColors.Control;
 			this.dataGridViewLexer.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-			dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle1.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.dataGridViewLexer.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+			dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+			dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle5.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dataGridViewLexer.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
 			this.dataGridViewLexer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridViewLexer.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CodeColumn,
@@ -657,6 +656,35 @@ namespace TFCLab1
 			this.dataGridViewLexer.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.dataGridViewLexer.Size = new System.Drawing.Size(999, 267);
 			this.dataGridViewLexer.TabIndex = 6;
+			// 
+			// CodeColumn
+			// 
+			this.CodeColumn.FillWeight = 30.45685F;
+			this.CodeColumn.HeaderText = "Условный код";
+			this.CodeColumn.Name = "CodeColumn";
+			this.CodeColumn.ReadOnly = true;
+			// 
+			// LexerTypeColumn
+			// 
+			this.LexerTypeColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.LexerTypeColumn.FillWeight = 151.6004F;
+			this.LexerTypeColumn.HeaderText = "Тип лексемы";
+			this.LexerTypeColumn.Name = "LexerTypeColumn";
+			this.LexerTypeColumn.ReadOnly = true;
+			// 
+			// LexemColumn
+			// 
+			this.LexemColumn.FillWeight = 151.6004F;
+			this.LexemColumn.HeaderText = "Лексема";
+			this.LexemColumn.Name = "LexemColumn";
+			this.LexemColumn.ReadOnly = true;
+			// 
+			// LocationColumn
+			// 
+			this.LocationColumn.FillWeight = 66.34232F;
+			this.LocationColumn.HeaderText = "Местоположение";
+			this.LocationColumn.Name = "LocationColumn";
+			this.LocationColumn.ReadOnly = true;
 			// 
 			// tabPageParser
 			// 
@@ -677,14 +705,6 @@ namespace TFCLab1
 			this.dataGridViewParser.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.dataGridViewParser.BackgroundColor = System.Drawing.SystemColors.Control;
 			this.dataGridViewParser.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle2.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.dataGridViewParser.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
 			this.dataGridViewParser.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridViewParser.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -700,6 +720,33 @@ namespace TFCLab1
 			this.dataGridViewParser.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.dataGridViewParser.Size = new System.Drawing.Size(999, 267);
 			this.dataGridViewParser.TabIndex = 7;
+			// 
+			// dataGridViewTextBoxColumn1
+			// 
+			dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+			this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle6;
+			this.dataGridViewTextBoxColumn1.FillWeight = 16.31657F;
+			this.dataGridViewTextBoxColumn1.HeaderText = "№";
+			this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+			this.dataGridViewTextBoxColumn1.ReadOnly = true;
+			// 
+			// dataGridViewTextBoxColumn3
+			// 
+			dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle7;
+			this.dataGridViewTextBoxColumn3.FillWeight = 237.9982F;
+			this.dataGridViewTextBoxColumn3.HeaderText = "Неверный фрагмент";
+			this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+			this.dataGridViewTextBoxColumn3.ReadOnly = true;
+			// 
+			// dataGridViewTextBoxColumn4
+			// 
+			dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+			this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle8;
+			this.dataGridViewTextBoxColumn4.FillWeight = 45.68528F;
+			this.dataGridViewTextBoxColumn4.HeaderText = "Местоположение";
+			this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+			this.dataGridViewTextBoxColumn4.ReadOnly = true;
 			// 
 			// statusStripLines
 			// 
@@ -750,62 +797,6 @@ namespace TFCLab1
 			this.toolStripStatusLabelRow.Size = new System.Drawing.Size(108, 17);
 			this.toolStripStatusLabelRow.Text = "Строка:   Столбец:";
 			this.toolStripStatusLabelRow.ToolTipText = "Готово";
-			// 
-			// CodeColumn
-			// 
-			this.CodeColumn.FillWeight = 30.45685F;
-			this.CodeColumn.HeaderText = "Условный код";
-			this.CodeColumn.Name = "CodeColumn";
-			this.CodeColumn.ReadOnly = true;
-			// 
-			// LexerTypeColumn
-			// 
-			this.LexerTypeColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.LexerTypeColumn.FillWeight = 151.6004F;
-			this.LexerTypeColumn.HeaderText = "Тип лексемы";
-			this.LexerTypeColumn.Name = "LexerTypeColumn";
-			this.LexerTypeColumn.ReadOnly = true;
-			// 
-			// LexemColumn
-			// 
-			this.LexemColumn.FillWeight = 151.6004F;
-			this.LexemColumn.HeaderText = "Лексема";
-			this.LexemColumn.Name = "LexemColumn";
-			this.LexemColumn.ReadOnly = true;
-			// 
-			// LocationColumn
-			// 
-			this.LocationColumn.FillWeight = 66.34232F;
-			this.LocationColumn.HeaderText = "Местоположение";
-			this.LocationColumn.Name = "LocationColumn";
-			this.LocationColumn.ReadOnly = true;
-			// 
-			// dataGridViewTextBoxColumn1
-			// 
-			dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-			this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle3;
-			this.dataGridViewTextBoxColumn1.FillWeight = 16.31657F;
-			this.dataGridViewTextBoxColumn1.HeaderText = "№";
-			this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-			this.dataGridViewTextBoxColumn1.ReadOnly = true;
-			// 
-			// dataGridViewTextBoxColumn3
-			// 
-			dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle4;
-			this.dataGridViewTextBoxColumn3.FillWeight = 237.9982F;
-			this.dataGridViewTextBoxColumn3.HeaderText = "Неверный фрагмент";
-			this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-			this.dataGridViewTextBoxColumn3.ReadOnly = true;
-			// 
-			// dataGridViewTextBoxColumn4
-			// 
-			dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-			this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle5;
-			this.dataGridViewTextBoxColumn4.FillWeight = 45.68528F;
-			this.dataGridViewTextBoxColumn4.HeaderText = "Местоположение";
-			this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-			this.dataGridViewTextBoxColumn4.ReadOnly = true;
 			// 
 			// CompilerApp
 			// 
