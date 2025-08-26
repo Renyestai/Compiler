@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>idea_creativity_creative_abstract_shape_grid_icon_226264.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\Icons\idea_creativity_creative_abstract_shape_grid_icon_226264.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -49,23 +49,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CompilerApp.cs">
+    <Compile Include="App\CompilerApp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CompilerApp.Designer.cs">
+    <Compile Include="App\CompilerApp.Designer.cs">
       <DependentUpon>CompilerApp.cs</DependentUpon>
     </Compile>
-    <Compile Include="AppFunctions.cs" />
-    <Compile Include="HelpForm.cs">
+    <Compile Include="App\AppFunctions.cs" />
+    <Compile Include="App\HelpForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HelpForm.Designer.cs">
+    <Compile Include="App\HelpForm.Designer.cs">
       <DependentUpon>HelpForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="HtmlHelper.cs" />
-    <Compile Include="LexicalAnalyzer.cs" />
-    <Compile Include="Parser.cs" />
-    <Compile Include="ParserErrors.cs" />
+    <Compile Include="Helpers\HtmlHelper.cs" />
+    <Compile Include="Lexical\LexicalAnalyzer.cs" />
+    <Compile Include="Syntax\Parser.cs" />
+    <Compile Include="Syntax\ParserErrors.cs" />
     <Compile Include="ParserFunctions\State10FirstArg.cs" />
     <Compile Include="ParserFunctions\State11ArifOperator.cs" />
     <Compile Include="ParserFunctions\State12SecondArg.cs" />
@@ -80,14 +80,14 @@
     <Compile Include="ParserFunctions\State7RightParenthesis.cs" />
     <Compile Include="ParserFunctions\State8LeftCurly.cs" />
     <Compile Include="ParserFunctions\State9KeywordReturn.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="App\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StringHelper.cs" />
-    <Compile Include="Token.cs" />
-    <EmbeddedResource Include="CompilerApp.resx">
+    <Compile Include="Helpers\StringHelper.cs" />
+    <Compile Include="Lexical\Token.cs" />
+    <EmbeddedResource Include="App\CompilerApp.resx">
       <DependentUpon>CompilerApp.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HelpForm.resx">
+    <EmbeddedResource Include="App\HelpForm.resx">
       <DependentUpon>HelpForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -114,14 +114,32 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="idea_creativity_creative_abstract_shape_grid_icon_226264.ico" />
-    <Content Include="Resources\Grammar.html" />
-    <Content Include="Resources\GrammarClassification.html" />
-    <Content Include="Resources\Help.html" />
-    <Content Include="Resources\ListOfLiterature.html" />
-    <Content Include="Resources\NeutrErrors.html" />
-    <Content Include="Resources\right_example.txt" />
-    <Content Include="Resources\TaskAssigment.html" />
+    <Content Include="Docs\ShowHelpHTMLPage.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\idea_creativity_creative_abstract_shape_grid_icon_226264.ico" />
+    <Content Include="Docs\Grammar.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Docs\GrammarClassification.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Docs\Help.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Docs\ListOfLiterature.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Docs\NeutrErrors.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Docs\right_example.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Docs\TaskAssigment.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -225,15 +225,25 @@ namespace TFCLab1
 				}
 			}
 		}
+		private void OpenDoc(string fileName)
+		{
+			string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+			string path = Path.Combine(baseDir, "Docs", fileName);
+
+			if (File.Exists(path))
+				HtmlHelper.OpenInBrowser(path);
+			else
+				MessageBox.Show($"Файл {fileName} не найден.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+		}
 
 		private void постановкаЗадачиToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			HtmlHelper.OpenInBrowser(@"Resources\TaskAssigment.html");
+			OpenDoc(@"TaskAssigment.html");
 		}
 
 		private void тестовыйпримерtoolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			string filePath = @"Resources\right_example.txt"; //..\..\Resources\right_example.txt
+			string filePath = @"Docs\right_example.txt"; //
 
 			try
 			{
@@ -265,32 +275,27 @@ namespace TFCLab1
 
 		private void грамматикаToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			HtmlHelper.OpenInBrowser(@"Resources\Grammar.html");
+			OpenDoc(@"Grammar.html");
 		}
 
 		private void классификацияграмматикиToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			HtmlHelper.OpenInBrowser(@"Resources\GrammarClassification.html");
+			OpenDoc(@"GrammarClassification.html");
 		}
 
 		private void методанализаtoolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			HtmlHelper.OpenInBrowser(@"Resources\MethodofAnalysis.html");
+			OpenDoc(@"MethodofAnalysis.html");
 		}
 
 		private void диагностикаинейтрализацияошибокtoolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			HtmlHelper.OpenInBrowser(@"Resources\NeutrErrors.html");
+			OpenDoc(@"NeutrErrors.html");
 		}
 
 		private void списоклитературыtoolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			HtmlHelper.OpenInBrowser(@"Resources\ListOfLiterature.html");
-		}
-
-		private void toolStripStatusLabelClean_Click(object sender, EventArgs e) //запуск метода Айронса
-		{
-
+			OpenDoc(@"ListOfLiterature.html");
 		}
 	}
 }

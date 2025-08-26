@@ -769,16 +769,6 @@ namespace TFCLab1
 			this.toolStripStatusLabelErrors.Text = "Ошибок не обнаружено";
 			this.toolStripStatusLabelErrors.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
-			// toolStripStatusLabelClean
-			// 
-			this.toolStripStatusLabelClean.BackColor = System.Drawing.SystemColors.Control;
-			this.toolStripStatusLabelClean.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-			this.toolStripStatusLabelClean.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.toolStripStatusLabelClean.Name = "toolStripStatusLabelClean";
-			this.toolStripStatusLabelClean.Size = new System.Drawing.Size(0, 17);
-			this.toolStripStatusLabelClean.Text = "toolStripStatusLabel1";
-			this.toolStripStatusLabelClean.Click += new System.EventHandler(this.toolStripStatusLabelClean_Click);
-			// 
 			// toolStripStatusLabelMiddle
 			// 
 			this.toolStripStatusLabelMiddle.BackColor = System.Drawing.SystemColors.Control;

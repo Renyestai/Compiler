@@ -40,6 +40,7 @@
 			this.webBrowserHelp.Name = "webBrowserHelp";
 			this.webBrowserHelp.Size = new System.Drawing.Size(800, 450);
 			this.webBrowserHelp.TabIndex = 0;
+			this.webBrowserHelp.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowserHelp_DocumentCompleted);
 			// 
 			// HelpForm
 			// 
